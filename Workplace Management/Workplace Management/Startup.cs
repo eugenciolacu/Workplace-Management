@@ -8,7 +8,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace Workplace_Management
+namespace WorkplaceManagement
 {
     public class Startup
     {

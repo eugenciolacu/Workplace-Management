@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 
-namespace Workplace_Management
+namespace WorkplaceManagement
 {
     public class Program
     {

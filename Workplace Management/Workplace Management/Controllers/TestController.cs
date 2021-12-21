@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace Workplace_Management.Controllers
+namespace WorkplaceManagement.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
