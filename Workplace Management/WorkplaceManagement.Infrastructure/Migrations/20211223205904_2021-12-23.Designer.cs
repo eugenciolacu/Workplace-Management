@@ -9,7 +9,7 @@ using WorkplaceManagement.Infrastructure.Context;
 namespace WorkplaceManagement.Infrastructure.Migrations
 {
     [DbContext(typeof(CoreContext))]
-    [Migration("20211223190518_2021-12-23")]
+    [Migration("20211223205904_2021-12-23")]
     partial class _20211223
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,6 +19,26 @@ namespace WorkplaceManagement.Infrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Floor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SiteId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.ToTable("Floors");
+                });
 
             modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>
                 {
@@ -34,7 +54,23 @@ namespace WorkplaceManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Site", "Core");
+                    b.ToTable("Site");
+                });
+
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Floor", b =>
+                {
+                    b.HasOne("WorkplaceManagement.Domain.Model.Site", "Site")
+                        .WithMany("Floors")
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Site");
+                });
+
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>
+                {
+                    b.Navigation("Floors");
                 });
 #pragma warning restore 612, 618
         }

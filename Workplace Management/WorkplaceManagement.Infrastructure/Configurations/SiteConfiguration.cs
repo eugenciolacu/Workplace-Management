@@ -8,7 +8,7 @@ namespace WorkplaceManagement.Infrastructure.Configurations
     {
         public void Configure(EntityTypeBuilder<Site> builder)
         {
-            builder.ToTable("Site", "Core");
+            builder.ToTable("Site");
             builder.HasKey(s => s.Id);
 
             builder.Property(s => s.Name)

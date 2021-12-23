@@ -18,6 +18,26 @@ namespace WorkplaceManagement.Infrastructure.Migrations
                 .HasAnnotation("ProductVersion", "5.0.13")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Floor", b =>
+                {
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<long>("SiteId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SiteId");
+
+                    b.ToTable("Floors");
+                });
+
             modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>
                 {
                     b.Property<long>("Id")
@@ -32,7 +52,23 @@ namespace WorkplaceManagement.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Site", "Core");
+                    b.ToTable("Site");
+                });
+
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Floor", b =>
+                {
+                    b.HasOne("WorkplaceManagement.Domain.Model.Site", "Site")
+                        .WithMany("Floors")
+                        .HasForeignKey("SiteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Site");
+                });
+
+            modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>
+                {
+                    b.Navigation("Floors");
                 });
 #pragma warning restore 612, 618
         }
