@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.31911.196
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkplaceManagement.API", "WorkplaceManagement.API\WorkplaceManagement.API.csproj", "{C608FBB3-2043-4378-AE7A-D4A5D17F4904}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkplaceManagement.Domain", "WorkplaceManagement.Domain\WorkplaceManagement.Domain.csproj", "{F88D1E37-C3EC-4B28-873F-1843D97F4CC9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WorkplaceManagement.Domain", "WorkplaceManagement.Domain\WorkplaceManagement.Domain.csproj", "{F88D1E37-C3EC-4B28-873F-1843D97F4CC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkplaceManagement.Infrastructure", "WorkplaceManagement.Infrastructure\WorkplaceManagement.Infrastructure.csproj", "{E60F6E23-C36C-4328-9D7A-7B8F3FE13AEC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F88D1E37-C3EC-4B28-873F-1843D97F4CC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F88D1E37-C3EC-4B28-873F-1843D97F4CC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F88D1E37-C3EC-4B28-873F-1843D97F4CC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E60F6E23-C36C-4328-9D7A-7B8F3FE13AEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E60F6E23-C36C-4328-9D7A-7B8F3FE13AEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E60F6E23-C36C-4328-9D7A-7B8F3FE13AEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E60F6E23-C36C-4328-9D7A-7B8F3FE13AEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
