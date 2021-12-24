@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -7,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using System;
 using System.IO;
 using System.Reflection;
+using WorkplaceManagement.Infrastructure.Context;
 
 namespace WorkplaceManagement.API
 {
@@ -24,6 +26,11 @@ namespace WorkplaceManagement.API
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services.AddDbContext<CoreContext>(optionBuilder =>
+            {
+                optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+            });
 
             ConfigureSwagger(services);
         }
