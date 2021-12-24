@@ -5,7 +5,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
-using System;
 using System.IO;
 using System.Reflection;
 using WorkplaceManagement.Infrastructure.Context;
@@ -27,7 +26,7 @@ namespace WorkplaceManagement.API
         {
             services.AddControllers();
 
-            services.AddDbContext<CoreContext>(optionBuilder =>
+            services.AddDbContext<ApplicationContext>(optionBuilder =>
             {
                 optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
@@ -72,7 +71,7 @@ namespace WorkplaceManagement.API
 
                 // Set the comments path for the Swagger JSON and UI.
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                var xmlPath = Path.Combine(System.AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
         }
