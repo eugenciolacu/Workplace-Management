@@ -1,4 +1,6 @@
-﻿using WorkplaceManagement.Domain.Base;
+﻿using System;
+using System.Collections.Generic;
+using WorkplaceManagement.Domain.Base;
 
 namespace WorkplaceManagement.Domain.Model
 {
@@ -7,5 +9,7 @@ namespace WorkplaceManagement.Domain.Model
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
+
+        public List<Reservation> Reservations { get; set; } = new();
     }
 }

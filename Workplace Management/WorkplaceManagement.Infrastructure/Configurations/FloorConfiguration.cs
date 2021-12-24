@@ -1,10 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Infrastructure.Configurations
@@ -15,14 +10,19 @@ namespace WorkplaceManagement.Infrastructure.Configurations
         {
             builder.ToTable("Floor");
 
-            builder.HasKey(s => s.Id);
+            //builder.HasKey(f => f.Id);
 
-            builder.HasOne(x => x.Site).
-                WithMany(x => x.Floors);
+            //builder.HasOne(f => f.Site)
+            //    .WithMany(s => s.Floors)
+            //    .HasForeignKey(f => f.SiteId)
+            //    .OnDelete(DeleteBehavior.Cascade);
 
-            builder.Property(s => s.Name)
+            builder.Property(f => f.Name)
                 .IsRequired()
                 .HasMaxLength(64);
+            builder.HasIndex(f => f.Name)
+                .IsUnique();
+            builder.HasCheckConstraint("CK_Floor_Name", "Name != ''");
         }
     }
 }

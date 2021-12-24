@@ -1,4 +1,5 @@
-﻿using WorkplaceManagement.Domain.Base;
+﻿using System.Collections.Generic;
+using WorkplaceManagement.Domain.Base;
 
 namespace WorkplaceManagement.Domain.Model
 {
@@ -8,5 +9,7 @@ namespace WorkplaceManagement.Domain.Model
 
         public long SiteId { get; set; }
         public Site Site { get; set; }
+
+        public List<Workplace> Workplaces { get; set; } = new();
     }
 }
