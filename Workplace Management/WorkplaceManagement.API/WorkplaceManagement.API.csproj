@@ -21,6 +21,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\WorkplaceManagement.Infrastructure\WorkplaceManagement.Infrastructure.csproj" />
+    <ProjectReference Include="..\WorkplaceManagement.Service\WorkplaceManagement.Service.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\WorkplaceManagement.Domain\WorkplaceManagement.Domain.csproj" />
+    <ProjectReference Include="..\WorkplaceManagement.Infrastructure\WorkplaceManagement.Infrastructure.csproj" />
+  </ItemGroup>
+
+</Project>
