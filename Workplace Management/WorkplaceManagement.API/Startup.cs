@@ -9,7 +9,7 @@ using System.IO;
 using System.Reflection;
 using WorkplaceManagement.Dal.Repository.Implementation;
 using WorkplaceManagement.Dal.Repository.Interface;
-using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Domain.Context;
 using WorkplaceManagement.Service.Implementation;
 using WorkplaceManagement.Service.Interface;
 
@@ -33,16 +33,13 @@ namespace WorkplaceManagement.API
             services.AddDbContext<ApplicationContext>(optionBuilder =>
             {
                 optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
+
+                //optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
+                //    b => b.MigrationsAssembly("WorkplaceManagement.Migration"));
             });
-
-
-
-
 
             services.AddTransient<ISiteRepository, SiteRepository>();
             services.AddTransient<ISiteService, SiteService>();
-
-
 
             ConfigureSwagger(services);
         }

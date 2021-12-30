@@ -1,6 +1,6 @@
 ﻿using WorkplaceManagement.Dal.Repository.Interface;
+using WorkplaceManagement.Domain.Context;
 using WorkplaceManagement.Domain.Model;
-using WorkplaceManagement.Infrastructure.Context;
 
 namespace WorkplaceManagement.Dal.Repository.Implementation
 {

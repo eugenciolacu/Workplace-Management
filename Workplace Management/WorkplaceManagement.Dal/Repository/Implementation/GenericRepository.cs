@@ -6,7 +6,7 @@ using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Base;
-using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Domain.Context;
 
 namespace WorkplaceManagement.Dal.Repository.Implementation
 {
