@@ -9,6 +9,6 @@ namespace WorkplaceManagement.Service.Interface
 {
     public interface ISiteService
     {
-        Site PostSite(Site site);
+        Task<Site> PostSite(Site site);
     }
 }

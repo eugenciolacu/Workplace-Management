@@ -5,6 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\WorkplaceManagement.Dal\WorkplaceManagement.Dal.csproj" />
     <ProjectReference Include="..\WorkplaceManagement.Domain\WorkplaceManagement.Domain.csproj" />
   </ItemGroup>
 

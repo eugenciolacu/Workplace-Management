@@ -7,7 +7,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
+using WorkplaceManagement.Dal.Repository.Implementation;
+using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Service.Implementation;
+using WorkplaceManagement.Service.Interface;
 
 namespace WorkplaceManagement.API
 {
@@ -30,6 +34,15 @@ namespace WorkplaceManagement.API
             {
                 optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+
+
+
+
+            services.AddTransient<ISiteRepository, SiteRepository>();
+            services.AddTransient<ISiteService, SiteService>();
+
+
 
             ConfigureSwagger(services);
         }

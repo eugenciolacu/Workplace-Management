@@ -7,7 +7,7 @@ using WorkplaceManagement.Domain.Base;
 
 namespace WorkplaceManagement.Dal.Repository.Interface
 {
-    interface IGenericRepository<T> where T : EntityBase
+    public interface IGenericRepository<T> where T : EntityBase
     {
         T Add(T t);
         Task<T> AddAsyn(T t);

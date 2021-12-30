@@ -10,6 +10,7 @@ using WorkplaceManagement.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class SiteController : ControllerBase
@@ -37,10 +38,10 @@ namespace WorkplaceManagement.API.Controllers
 
         // POST api/<SiteController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public Site Post([FromBody] Site site)
         {
-            Site site = new Site() { Name = "test" };
-            _siteService.PostSite(site);
+            Task<Site> task = Task.Run<Site>(async () => await _siteService.PostSite(site));
+            return task.Result;
         }
 
         // PUT api/<SiteController>/5

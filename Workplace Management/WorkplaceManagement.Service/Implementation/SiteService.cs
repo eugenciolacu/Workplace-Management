@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.Service.Interface;
 
@@ -10,9 +7,19 @@ namespace WorkplaceManagement.Service.Implementation
 {
     public class SiteService : ISiteService
     {
-        public Site PostSite(Site site)
+        private readonly ISiteRepository _siteRepository;
+
+        public SiteService(ISiteRepository siteRepository)
         {
-            return null;
+            _siteRepository = siteRepository;
+        }
+
+
+        public async Task<Site> PostSite(Site site)
+        {
+            await _siteRepository.AddAsyn(site);
+            await _siteRepository.SaveAsync();
+            return site;
         }
     }
 }
