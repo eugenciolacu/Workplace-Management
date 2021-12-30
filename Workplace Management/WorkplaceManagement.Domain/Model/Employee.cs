@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using WorkplaceManagement.Domain.Base;
 
 namespace WorkplaceManagement.Domain.Model

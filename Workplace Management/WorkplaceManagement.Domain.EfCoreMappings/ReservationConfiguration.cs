@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
 using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Infrastructure.Configurations
