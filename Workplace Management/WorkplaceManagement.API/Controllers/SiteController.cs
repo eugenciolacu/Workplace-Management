@@ -1,7 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using WorkplaceManagement.Domain.Model;
+//using WorkplaceManagement.Domain.Model;
+using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
@@ -34,9 +35,9 @@ namespace WorkplaceManagement.API.Controllers
 
         // POST api/<SiteController>
         [HttpPost]
-        public Site Post([FromBody] Site site)
+        public SiteDto Post([FromBody] SiteDto site)
         {
-            Task<Site> task = Task.Run<Site>(async () => await _siteService.PostSite(site));
+            Task<SiteDto> task = Task.Run<SiteDto>(async () => await _siteService.PostSite(site));
             return task.Result;
         }
 

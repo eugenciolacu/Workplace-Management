@@ -38,6 +38,13 @@ namespace WorkplaceManagement.API
                 //    b => b.MigrationsAssembly("WorkplaceManagement.Migration"));
             });
 
+            //var mapperConfig = new MapperConfiguration(m =>
+            //{
+            //    m.AddProfile(new SiteProfile());
+            //});
+
+            //services.AddSingleton(mapperConfig.CreateMapper());
+
             services.AddTransient<ISiteRepository, SiteRepository>();
             services.AddTransient<ISiteService, SiteService>();
 
