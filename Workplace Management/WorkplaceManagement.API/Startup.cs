@@ -25,7 +25,6 @@ namespace WorkplaceManagement.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -33,17 +32,9 @@ namespace WorkplaceManagement.API
             services.AddDbContext<ApplicationContext>(optionBuilder =>
             {
                 optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-
-                //optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"),
-                //    b => b.MigrationsAssembly("WorkplaceManagement.Migration"));
             });
 
-            //var mapperConfig = new MapperConfiguration(m =>
-            //{
-            //    m.AddProfile(new SiteProfile());
-            //});
-
-            //services.AddSingleton(mapperConfig.CreateMapper());
+            services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
             services.AddTransient<ISiteRepository, SiteRepository>();
             services.AddTransient<ISiteService, SiteService>();

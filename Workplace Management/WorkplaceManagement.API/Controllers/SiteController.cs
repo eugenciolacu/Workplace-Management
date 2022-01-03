@@ -1,7 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System.Threading.Tasks;
-//using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Interface;
 
@@ -21,36 +19,43 @@ namespace WorkplaceManagement.API.Controllers
 
         // GET: api/<SiteController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public async Task<IActionResult> Get()
         {
-            return new string[] { "value1", "value2" };
+            return Ok(await _siteService.GetSites());
         }
 
         // GET api/<SiteController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public async Task<IActionResult> Get(int id)
         {
-            return "value";
+            return Ok(await _siteService.GetSite(id));
         }
 
         // POST api/<SiteController>
         [HttpPost]
-        public SiteDto Post([FromBody] SiteDto site)
+        public async Task<IActionResult> Post([FromBody] SiteDto site)
         {
-            Task<SiteDto> task = Task.Run<SiteDto>(async () => await _siteService.PostSite(site));
-            return task.Result;
+            Task<SiteDto> result = Task.Run<SiteDto>(async () => await _siteService.PostSite(site));
+
+            return CreatedAtAction(nameof(Get), new { id = result.Id }, await result);
         }
 
         // PUT api/<SiteController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] SiteDto site)
         {
+            Task<SiteDto> result = _siteService.PutSite(id, site);
+
+            return CreatedAtAction(nameof(Get), new { id = id }, await result);
         }
 
         // DELETE api/<SiteController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
+            Task<SiteDto> result = _siteService.DeleteSite(id);
+
+            return Ok(await result);
         }
     }
 }

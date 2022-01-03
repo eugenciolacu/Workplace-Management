@@ -2,15 +2,13 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WorkplaceManagement.Domain.Model;
 
-namespace WorkplaceManagement.Infrastructure.Configurations
+namespace WorkplaceManagement.Domain.Mapping
 {
     public class EmployeeConfiguration : IEntityTypeConfiguration<Employee>
     {
         public void Configure(EntityTypeBuilder<Employee> builder)
         {
             builder.ToTable("Employee");
-
-            //builder.HasKey(e => e.Id);
 
             builder.Property(e => e.FirstName)
                 .IsRequired()

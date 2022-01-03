@@ -5,8 +5,8 @@ using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
-using WorkplaceManagement.Domain.Base;
 using WorkplaceManagement.Domain.Context;
+using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Dal.Repository.Implementation
 {
@@ -56,12 +56,12 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return t;
         }
 
-        public int Count()
+        public long Count()
         {
             return _context.Set<T>().Count();
         }
 
-        public async Task<int> CountAsync()
+        public async Task<long> CountAsync()
         {
             return await _context.Set<T>().CountAsync();
         }
@@ -72,7 +72,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             _context.SaveChanges();
         }
 
-        public virtual async Task<int> DeleteAsyn(T entity)
+        public virtual async Task<long> DeleteAsyn(T entity)
         {
             _context.Set<T>().Remove(entity);
             return await _context.SaveChangesAsync();
@@ -109,7 +109,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
 
-        public virtual T Get(int id)
+        public virtual T Get(long id)
         {
             return _context.Set<T>().Find(id);
         }
@@ -135,7 +135,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return queryable;
         }
 
-        public virtual async Task<T> GetAsync(int id)
+        public virtual async Task<T> GetAsync(long id)
         {
             return await _context.Set<T>().FindAsync(id);
         }
@@ -145,7 +145,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             _context.SaveChanges();
         }
 
-        public virtual async Task<int> SaveAsync()
+        public virtual async Task<long> SaveAsync()
         {
             return await _context.SaveChangesAsync();
         }

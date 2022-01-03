@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
@@ -19,15 +21,50 @@ namespace WorkplaceManagement.Service.Implementation
             _mapper = mapper;
         }
 
+        public async Task<SiteDto> DeleteSite(long id)
+        {
+            Site toDelete = await _siteRepository.GetAsync(id);
+            await _siteRepository.DeleteAsyn(toDelete);
+
+            return _mapper.Map<SiteDto>(toDelete);
+        }
+
+        public async Task<SiteDto> GetSite(long id)
+        {
+            var result = await _siteRepository.GetAsync(id);
+
+            if (result == null)
+            {
+                throw new Exception("Site not found, implement separate exception later");
+            }
+
+            return _mapper.Map<SiteDto>(result);
+        }
+
+        public async Task<IEnumerable<SiteDto>> GetSites()
+        {
+            var result = await _siteRepository.GetAllAsyn();
+
+            return _mapper.Map<List<SiteDto>>(result);
+        }
 
         public async Task<SiteDto> PostSite(SiteDto siteDto)
         {
             Site site = _mapper.Map<Site>(siteDto);
 
-            await _siteRepository.AddAsyn(site);
-            await _siteRepository.SaveAsync();
+            var result = await _siteRepository.AddAsyn(site);
 
-            return siteDto;
+            return _mapper.Map<SiteDto>(result);
+        }
+
+        public async Task<SiteDto> PutSite(long id, SiteDto siteDto)
+        {
+            Site toUpdate = await _siteRepository.GetAsync(id);
+            toUpdate.Name = siteDto.Name;
+
+            Site result = await _siteRepository.UpdateAsyn(toUpdate, toUpdate.Id);
+
+            return _mapper.Map<SiteDto>(result);
         }
     }
 }

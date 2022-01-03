@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WorkplaceManagement.Domain.Contexts\WorkplaceManagement.Domain.Context.csproj" />
     <ProjectReference Include="..\WorkplaceManagement.Domain\WorkplaceManagement.Domain.csproj" />
   </ItemGroup>
 

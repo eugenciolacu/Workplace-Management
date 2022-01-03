@@ -2,20 +2,13 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using WorkplaceManagement.Domain.Model;
 
-namespace WorkplaceManagement.Infrastructure.Configurations
+namespace WorkplaceManagement.Domain.Mapping
 {
     public class WorkplaceConfiguration : IEntityTypeConfiguration<Workplace>
     {
         public void Configure(EntityTypeBuilder<Workplace> builder)
         {
             builder.ToTable("Workplace");
-
-            //builder.HasKey(w => w.Id);
-
-            //builder.HasOne(w => w.Floor)
-            //    .WithMany(f => f.Workplaces)
-            //    .HasForeignKey(w => w.FloorId)
-            //    .OnDelete(DeleteBehavior.Cascade);
 
             builder.Property(w => w.Name)
                 .IsRequired()

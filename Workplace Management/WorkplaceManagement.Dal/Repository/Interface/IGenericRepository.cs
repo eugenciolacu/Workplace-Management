@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
-using WorkplaceManagement.Domain.Base;
+using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Dal.Repository.Interface
 {
@@ -12,11 +12,11 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         T Add(T t);
         Task<T> AddAsyn(T t);
 
-        int Count();
-        Task<int> CountAsync();
+        long Count();
+        Task<long> CountAsync();
 
         void Delete(T entity);
-        Task<int> DeleteAsyn(T entity);
+        Task<long> DeleteAsyn(T entity);
 
         void Dispose();
 
@@ -29,8 +29,8 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
         Task<ICollection<T>> FindByAsyn(Expression<Func<T, bool>> predicate);
 
-        T Get(int id);
-        Task<T> GetAsync(int id);
+        T Get(long id);
+        Task<T> GetAsync(long id);
 
         IQueryable<T> GetAll();
         Task<ICollection<T>> GetAllAsyn();
@@ -38,7 +38,7 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
 
         void Save();
-        Task<int> SaveAsync();
+        Task<long> SaveAsync();
 
         T Update(T t, object key);
         Task<T> UpdateAsyn(T t, object key);

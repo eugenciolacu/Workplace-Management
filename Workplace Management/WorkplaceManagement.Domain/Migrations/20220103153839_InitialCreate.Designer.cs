@@ -7,10 +7,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using WorkplaceManagement.Domain.Context;
 
-namespace WorkplaceManagement.Domain.Context.Migrations
+namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211230150556_InitialCreate")]
+    [Migration("20220103153839_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
