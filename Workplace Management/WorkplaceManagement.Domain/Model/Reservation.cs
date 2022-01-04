@@ -1,5 +1,4 @@
 ﻿using System;
-using WorkplaceManagement.Domain.Base;
 
 namespace WorkplaceManagement.Domain.Model
 {

@@ -7,7 +7,11 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
-using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Dal.Repository.Implementation;
+using WorkplaceManagement.Dal.Repository.Interface;
+using WorkplaceManagement.Domain.Context;
+using WorkplaceManagement.Service.Implementation;
+using WorkplaceManagement.Service.Interface;
 
 namespace WorkplaceManagement.API
 {
@@ -21,7 +25,6 @@ namespace WorkplaceManagement.API
         public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
-        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
@@ -30,6 +33,11 @@ namespace WorkplaceManagement.API
             {
                 optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
+
+            services.AddTransient<ISiteRepository, SiteRepository>();
+            services.AddTransient<ISiteService, SiteService>();
 
             ConfigureSwagger(services);
         }

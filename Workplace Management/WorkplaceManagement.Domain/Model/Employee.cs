@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using WorkplaceManagement.Domain.Base;
+﻿using System.Collections.Generic;
 
 namespace WorkplaceManagement.Domain.Model
 {

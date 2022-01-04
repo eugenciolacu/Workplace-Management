@@ -4,9 +4,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Domain.Context;
 
-namespace WorkplaceManagement.Infrastructure.Migrations
+namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
     partial class ApplicationContextModelSnapshot : ModelSnapshot

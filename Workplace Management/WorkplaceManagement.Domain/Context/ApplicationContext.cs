@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using WorkplaceManagement.Domain.Mapping;
 using WorkplaceManagement.Domain.Model;
-using WorkplaceManagement.Infrastructure.Configurations;
 
-namespace WorkplaceManagement.Infrastructure.Context
+namespace WorkplaceManagement.Domain.Context
 {
     public class ApplicationContext : DbContext
     {

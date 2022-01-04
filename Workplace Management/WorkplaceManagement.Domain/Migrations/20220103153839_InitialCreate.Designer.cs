@@ -5,12 +5,12 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WorkplaceManagement.Infrastructure.Context;
+using WorkplaceManagement.Domain.Context;
 
-namespace WorkplaceManagement.Infrastructure.Migrations
+namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20211224130546_InitialCreate")]
+    [Migration("20220103153839_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

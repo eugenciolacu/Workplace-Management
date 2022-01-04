@@ -1,4 +1,4 @@
-﻿namespace WorkplaceManagement.Domain.Base
+﻿namespace WorkplaceManagement.Domain.Model
 {
     public abstract class EntityBase
     {
