@@ -10,13 +10,13 @@ namespace WorkplaceManagement.Dal.Repository.Interface
     public interface IGenericRepository<T> where T : EntityBase
     {
         T Add(T t);
-        Task<T> AddAsyn(T t);
+        Task<T> AddAsync(T t);
 
         long Count();
         Task<long> CountAsync();
 
         void Delete(T entity);
-        Task<long> DeleteAsyn(T entity);
+        Task<long> DeleteAsync(T entity);
 
         void Dispose();
 
@@ -27,13 +27,13 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         Task<ICollection<T>> FindAllAsync(Expression<Func<T, bool>> match);
 
         IQueryable<T> FindBy(Expression<Func<T, bool>> predicate);
-        Task<ICollection<T>> FindByAsyn(Expression<Func<T, bool>> predicate);
+        Task<ICollection<T>> FindByAsync(Expression<Func<T, bool>> predicate);
 
         T Get(long id);
         Task<T> GetAsync(long id);
 
         IQueryable<T> GetAll();
-        Task<ICollection<T>> GetAllAsyn();
+        Task<ICollection<T>> GetAllAsync();
 
         IQueryable<T> GetAllIncluding(params Expression<Func<T, object>>[] includeProperties);
 
@@ -41,6 +41,6 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         Task<long> SaveAsync();
 
         T Update(T t, object key);
-        Task<T> UpdateAsyn(T t, object key);
+        Task<T> UpdateAsync(T t, object key);
     }
 }

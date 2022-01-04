@@ -36,8 +36,11 @@ namespace WorkplaceManagement.API
 
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
-            services.AddTransient<ISiteRepository, SiteRepository>();
             services.AddTransient<ISiteService, SiteService>();
+            services.AddTransient<ISiteRepository, SiteRepository>();
+                        
+            services.AddTransient<IFloorService, FloorService>();
+            services.AddTransient<IFloorRepository, FloorRepository>();
 
             ConfigureSwagger(services);
         }

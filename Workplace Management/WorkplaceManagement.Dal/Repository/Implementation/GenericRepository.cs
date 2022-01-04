@@ -49,7 +49,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return t;
         }
 
-        public virtual async Task<T> AddAsyn(T t)
+        public virtual async Task<T> AddAsync(T t)
         {
             _context.Set<T>().Add(t);
             await _context.SaveChangesAsync();
@@ -72,7 +72,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             _context.SaveChanges();
         }
 
-        public virtual async Task<long> DeleteAsyn(T entity)
+        public virtual async Task<long> DeleteAsync(T entity)
         {
             _context.Set<T>().Remove(entity);
             return await _context.SaveChangesAsync();
@@ -104,7 +104,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return query;
         }
 
-        public virtual async Task<ICollection<T>> FindByAsyn(Expression<Func<T, bool>> predicate)
+        public virtual async Task<ICollection<T>> FindByAsync(Expression<Func<T, bool>> predicate)
         {
             return await _context.Set<T>().Where(predicate).ToListAsync();
         }
@@ -119,7 +119,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return _context.Set<T>();
         }
 
-        public virtual async Task<ICollection<T>> GetAllAsyn()
+        public virtual async Task<ICollection<T>> GetAllAsync()
         {
             return await _context.Set<T>().ToListAsync();
         }
@@ -163,7 +163,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return exist;
         }
 
-        public virtual async Task<T> UpdateAsyn(T t, object key)
+        public virtual async Task<T> UpdateAsync(T t, object key)
         {
             if (t == null)
                 return null;

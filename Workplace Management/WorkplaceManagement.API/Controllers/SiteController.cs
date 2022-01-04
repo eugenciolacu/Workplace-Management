@@ -35,7 +35,7 @@ namespace WorkplaceManagement.API.Controllers
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] SiteDto site)
         {
-            Task<SiteDto> result = Task.Run<SiteDto>(async () => await _siteService.PostSite(site));
+            Task<SiteDto> result = Task.Run(async () => await _siteService.PostSite(site));
 
             return CreatedAtAction(nameof(Get), new { id = result.Id }, await result);
         }

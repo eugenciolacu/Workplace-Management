@@ -24,14 +24,14 @@ namespace WorkplaceManagement.Service.Implementation
         public async Task<SiteDto> DeleteSite(long id)
         {
             Site toDelete = await _siteRepository.GetAsync(id);
-            await _siteRepository.DeleteAsyn(toDelete);
+            await _siteRepository.DeleteAsync(toDelete);
 
             return _mapper.Map<SiteDto>(toDelete);
         }
 
         public async Task<SiteDto> GetSite(long id)
         {
-            var result = await _siteRepository.GetAsync(id);
+            Site result = await _siteRepository.GetAsync(id);
 
             if (result == null)
             {
@@ -43,7 +43,7 @@ namespace WorkplaceManagement.Service.Implementation
 
         public async Task<IEnumerable<SiteDto>> GetSites()
         {
-            var result = await _siteRepository.GetAllAsyn();
+            ICollection<Site> result = await _siteRepository.GetAllAsync();
 
             return _mapper.Map<List<SiteDto>>(result);
         }
@@ -52,7 +52,7 @@ namespace WorkplaceManagement.Service.Implementation
         {
             Site site = _mapper.Map<Site>(siteDto);
 
-            var result = await _siteRepository.AddAsyn(site);
+            Site result = await _siteRepository.AddAsync(site);
 
             return _mapper.Map<SiteDto>(result);
         }
@@ -62,7 +62,7 @@ namespace WorkplaceManagement.Service.Implementation
             Site toUpdate = await _siteRepository.GetAsync(id);
             toUpdate.Name = siteDto.Name;
 
-            Site result = await _siteRepository.UpdateAsyn(toUpdate, toUpdate.Id);
+            Site result = await _siteRepository.UpdateAsync(toUpdate, toUpdate.Id);
 
             return _mapper.Map<SiteDto>(result);
         }
