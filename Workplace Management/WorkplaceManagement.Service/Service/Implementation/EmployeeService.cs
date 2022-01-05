@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.Service.Dto;
-using WorkplaceManagement.Service.Interface;
+using WorkplaceManagement.Service.Service.Interface;
 
-namespace WorkplaceManagement.Service.Implementation
+namespace WorkplaceManagement.Service.Service.Implementation
 {
     public class EmployeeService : IEmployeeService
     {

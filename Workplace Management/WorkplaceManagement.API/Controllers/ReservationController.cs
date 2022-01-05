@@ -12,39 +12,39 @@ namespace WorkplaceManagement.API.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class WorkplaceController : ControllerBase
+    public class ReservationController : ControllerBase
     {
-        public IWorkplaceService _workplaceService;
+        public IReservationService _reservationService;
 
-        public WorkplaceController(IWorkplaceService workplaceService)
+        public ReservationController(IReservationService reservationService)
         {
-            _workplaceService = workplaceService;
+            _reservationService = reservationService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _workplaceService.GetWorkplaces());
+            return Ok(await _reservationService.GetReservations());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _workplaceService.GetWorkplace(id));
+            return Ok(await _reservationService.GetReservation(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] WorkplaceDto workplace)
+        public async Task<IActionResult> Post([FromBody] ReservationDto reservation)
         {
-            Task<WorkplaceDto> result = Task.Run(async () => await _workplaceService.PostWorkplace(workplace));
+            Task<ReservationDto> result = Task.Run(async () => await _reservationService.PostReservation(reservation));
 
             return CreatedAtAction(nameof(Get), new { id = result.Id }, await result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] WorkplaceDto workplace)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] ReservationDto reservation)
         {
-            Task<WorkplaceDto> result = _workplaceService.PutWorkplace(id, workplace);
+            Task<ReservationDto> result = _reservationService.PutReservation(id, reservation);
 
             return CreatedAtAction(nameof(Get), new { id = id }, await result);
         }
@@ -52,7 +52,7 @@ namespace WorkplaceManagement.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Task<WorkplaceDto> result = _workplaceService.DeleteWorkplace(id);
+            Task<ReservationDto> result = _reservationService.DeleteReservation(id);
 
             return Ok(await result);
         }

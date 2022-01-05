@@ -10,8 +10,8 @@ using System.Reflection;
 using WorkplaceManagement.Dal.Repository.Implementation;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Context;
-using WorkplaceManagement.Service.Implementation;
-using WorkplaceManagement.Service.Interface;
+using WorkplaceManagement.Service.Service.Implementation;
+using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API
 {
@@ -47,6 +47,9 @@ namespace WorkplaceManagement.API
 
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
+            services.AddTransient<IReservationService, ReservationService>();
+            services.AddTransient<IReservationRepository, ReservationRepository>();
 
             ConfigureSwagger(services);
         }

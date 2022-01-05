@@ -2,7 +2,7 @@
 using System.Threading.Tasks;
 using WorkplaceManagement.Service.Dto;
 
-namespace WorkplaceManagement.Service.Interface
+namespace WorkplaceManagement.Service.Service.Interface
 {
     public interface IEmployeeService
     {

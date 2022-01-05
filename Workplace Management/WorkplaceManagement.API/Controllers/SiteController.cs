@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WorkplaceManagement.Service.Dto;
-using WorkplaceManagement.Service.Interface;
+using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
 {
