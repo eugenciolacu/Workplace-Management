@@ -45,6 +45,9 @@ namespace WorkplaceManagement.API
             services.AddTransient<IWorkplaceService, WorkplaceService>();
             services.AddTransient<IWorkplaceRepository, WorkplaceRepository>();
 
+            services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
+
             ConfigureSwagger(services);
         }
 

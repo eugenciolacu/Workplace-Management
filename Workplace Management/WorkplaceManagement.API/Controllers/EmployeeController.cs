@@ -8,39 +8,39 @@ namespace WorkplaceManagement.API.Controllers
     [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
-    public class SiteController : ControllerBase
+    public class EmployeeController : ControllerBase
     {
-        public ISiteService _siteService;
+        public IEmployeeService _employeeService;
 
-        public SiteController(ISiteService siteService)
+        public EmployeeController(IEmployeeService employeeService)
         {
-            _siteService = siteService;
+            _employeeService = employeeService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            return Ok(await _siteService.GetSites());
+            return Ok(await _employeeService.GetEmployees());
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            return Ok(await _siteService.GetSite(id));
+            return Ok(await _employeeService.GetEmployee(id));
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] SiteDto site)
+        public async Task<IActionResult> Post([FromBody] EmployeeDto employee)
         {
-            Task<SiteDto> result = Task.Run(async () => await _siteService.PostSite(site));
+            Task<EmployeeDto> result = Task.Run(async () => await _employeeService.PostEmployee(employee));
 
             return CreatedAtAction(nameof(Get), new { id = result.Id }, await result);
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] SiteDto site)
+        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] EmployeeDto employee)
         {
-            Task<SiteDto> result = _siteService.PutSite(id, site);
+            Task<EmployeeDto> result = _employeeService.PutEmployee(id, employee);
 
             return CreatedAtAction(nameof(Get), new { id = id }, await result);
         }
@@ -48,7 +48,7 @@ namespace WorkplaceManagement.API.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            Task<SiteDto> result = _siteService.DeleteSite(id);
+            Task<EmployeeDto> result = _employeeService.DeleteEmployee(id);
 
             return Ok(await result);
         }
