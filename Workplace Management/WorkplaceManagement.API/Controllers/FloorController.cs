@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -10,10 +11,12 @@ namespace WorkplaceManagement.API.Controllers
     [ApiController]
     public class FloorController : ControllerBase
     {
-        public IFloorService _floorService;
+        private ILoggerManager _logger;
+        private IFloorService _floorService;
 
-        public FloorController(IFloorService floorService)
+        public FloorController(ILoggerManager logger, IFloorService floorService)
         {
+            _logger = logger;
             _floorService = floorService;
         }
 

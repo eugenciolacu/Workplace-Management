@@ -19,6 +19,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 Domain", "4 Domain", "{D2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 Service", "2 Service", "{E4EFC2FF-7FAB-43BD-9391-3BCAA9314BA8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WorkplaceManagement.LoggerService", "WorkplaceManagement.LoggerService\WorkplaceManagement.LoggerService.csproj", "{01320661-FA6B-461D-9E60-2DB64CDE3E76}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{10751EFE-36F8-4CF1-9BA9-0032BD2BA410}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{10751EFE-36F8-4CF1-9BA9-0032BD2BA410}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{10751EFE-36F8-4CF1-9BA9-0032BD2BA410}.Release|Any CPU.Build.0 = Release|Any CPU
+		{01320661-FA6B-461D-9E60-2DB64CDE3E76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{01320661-FA6B-461D-9E60-2DB64CDE3E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{01320661-FA6B-461D-9E60-2DB64CDE3E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{01320661-FA6B-461D-9E60-2DB64CDE3E76}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{F88D1E37-C3EC-4B28-873F-1843D97F4CC9} = {D240A3FC-679F-47BA-B1C7-2D7DF884287C}
 		{A483CC24-9E9A-4E9C-BB55-3FC442616527} = {E4EFC2FF-7FAB-43BD-9391-3BCAA9314BA8}
 		{10751EFE-36F8-4CF1-9BA9-0032BD2BA410} = {A7A391B6-9A6E-47A4-A294-A7278CD6AD3E}
+		{01320661-FA6B-461D-9E60-2DB64CDE3E76} = {E4EFC2FF-7FAB-43BD-9391-3BCAA9314BA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D27793D7-F4E9-4BEE-8F50-209873285229}

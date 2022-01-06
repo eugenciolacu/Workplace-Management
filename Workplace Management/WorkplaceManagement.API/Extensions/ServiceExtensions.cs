@@ -3,19 +3,21 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
+using WorkplaceManagement.LoggerService;
 
 namespace WorkplaceManagement.Service.Extensions
 {
     public static class ServiceExtensions
     {
         // use this to configure Cross-Origin Resource Sharing (CORS)
-        public static void ConfigureCors(this IServiceCollection services) => services.AddCors(options =>
-        {
-            options.AddPolicy("CorsPolicy", builder =>
-                builder.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader());
-        });
+        public static void ConfigureCors(this IServiceCollection services) => 
+            services.AddCors(options =>
+                {
+                    options.AddPolicy("CorsPolicy", builder =>
+                        builder.AllowAnyOrigin()
+                        .AllowAnyMethod()
+                        .AllowAnyHeader());
+                });
 
         // use this to configure swagger
         public static void ConfigureSwagger(this IServiceCollection services)
@@ -46,5 +48,8 @@ namespace WorkplaceManagement.Service.Extensions
 
             });
         }
+
+        public static void ConfigureLoggerService(this IServiceCollection services) =>
+            services.AddScoped<ILoggerManager, LoggerManager>();
     }
 }

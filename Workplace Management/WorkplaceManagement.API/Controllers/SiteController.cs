@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -10,10 +11,12 @@ namespace WorkplaceManagement.API.Controllers
     [ApiController]
     public class SiteController : ControllerBase
     {
-        public ISiteService _siteService;
+        private ILoggerManager _logger;
+        private ISiteService _siteService;
 
-        public SiteController(ISiteService siteService)
+        public SiteController(ILoggerManager logger, ISiteService siteService)
         {
+            _logger = logger;
             _siteService = siteService;
         }
 

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -11,12 +12,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
 {
     public class SiteService : ISiteService
     {
-        private readonly ISiteRepository _siteRepository;
+        private ILoggerManager _logger;
 
-        private readonly IMapper _mapper;
+        private ISiteRepository _siteRepository;
 
-        public SiteService(ISiteRepository siteRepository, IMapper mapper)
+        private IMapper _mapper;
+
+        public SiteService(ILoggerManager logger, ISiteRepository siteRepository, IMapper mapper)
         {
+            _logger = logger;
             _siteRepository = siteRepository;
             _mapper = mapper;
         }

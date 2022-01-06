@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -11,12 +12,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
 {
     public class ReservationService : IReservationService
     {
-        private readonly IReservationRepository _reservationRepository;
+        private ILoggerManager _logger;
 
-        private readonly IMapper _mapper;
+        private IReservationRepository _reservationRepository;
 
-        public ReservationService(IReservationRepository reservationRepository, IMapper mapper)
+        private IMapper _mapper;
+
+        public ReservationService(ILoggerManager logger, IReservationRepository reservationRepository, IMapper mapper)
         {
+            _logger = logger;
             _reservationRepository = reservationRepository;
             _mapper = mapper;
         }

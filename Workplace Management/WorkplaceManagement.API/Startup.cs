@@ -5,6 +5,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NLog;
+using System.IO;
 using WorkplaceManagement.Dal.Repository.Implementation;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Context;
@@ -18,6 +20,8 @@ namespace WorkplaceManagement.API
     {
         public Startup(IConfiguration configuration)
         {
+            LogManager.LoadConfiguration(string.Concat(Directory.GetCurrentDirectory(), "/nlog.config"));
+
             Configuration = configuration;
         }
 
@@ -31,6 +35,8 @@ namespace WorkplaceManagement.API
             services.ConfigureIISIntegration();
 
             services.ConfigureSwagger();
+
+            services.ConfigureLoggerService();
 
             services.AddControllers();
 

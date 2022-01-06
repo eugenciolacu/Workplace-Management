@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -14,10 +11,12 @@ namespace WorkplaceManagement.API.Controllers
     [ApiController]
     public class ReservationController : ControllerBase
     {
-        public IReservationService _reservationService;
+        private ILoggerManager _logger;
+        private IReservationService _reservationService;
 
-        public ReservationController(IReservationService reservationService)
+        public ReservationController(ILoggerManager logger, IReservationService reservationService)
         {
+            _logger = logger;
             _reservationService = reservationService;
         }
 

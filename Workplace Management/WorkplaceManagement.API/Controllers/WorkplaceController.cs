@@ -1,9 +1,6 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
 using WorkplaceManagement.Service.Service.Interface;
 
@@ -14,10 +11,12 @@ namespace WorkplaceManagement.API.Controllers
     [ApiController]
     public class WorkplaceController : ControllerBase
     {
-        public IWorkplaceService _workplaceService;
+        private ILoggerManager _logger;
+        private IWorkplaceService _workplaceService;
 
-        public WorkplaceController(IWorkplaceService workplaceService)
+        public WorkplaceController(ILoggerManager logger, IWorkplaceService workplaceService)
         {
+            _logger = logger;
             _workplaceService = workplaceService;
         }
 
