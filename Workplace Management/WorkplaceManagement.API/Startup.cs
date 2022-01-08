@@ -38,12 +38,9 @@ namespace WorkplaceManagement.API
 
             services.ConfigureLoggerService();
 
-            services.AddControllers();
+            services.ConfigureSqlContext(Configuration);
 
-            services.AddDbContext<ApplicationContext>(optionBuilder =>
-            {
-                optionBuilder.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
+            services.AddControllers();
 
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
