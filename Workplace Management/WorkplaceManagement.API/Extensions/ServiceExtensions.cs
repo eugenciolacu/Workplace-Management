@@ -52,10 +52,11 @@ namespace WorkplaceManagement.Service.Extensions
             });
         }
 
+        // Register LoggerManager
         public static void ConfigureLoggerService(this IServiceCollection services) =>
             services.AddScoped<ILoggerManager, LoggerManager>();
 
-
+        // Register DbContext
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => 
                 services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
     }
