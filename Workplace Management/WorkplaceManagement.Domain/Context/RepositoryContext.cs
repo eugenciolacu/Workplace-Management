@@ -4,7 +4,7 @@ using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Domain.Context
 {
-    public class ApplicationContext : DbContext
+    public class RepositoryContext : DbContext
     {
         public DbSet<Site> Sites { get; set; }
         public DbSet<Floor> Floors { get; set; }
@@ -12,7 +12,7 @@ namespace WorkplaceManagement.Domain.Context
         public DbSet<Employee> Employees { get; set; }
         public DbSet<Reservation> Reservations { get; set; }
 
-        public ApplicationContext(DbContextOptions<ApplicationContext> options) : base(options)
+        public RepositoryContext(DbContextOptions<RepositoryContext> options) : base(options)
         {
 
         }

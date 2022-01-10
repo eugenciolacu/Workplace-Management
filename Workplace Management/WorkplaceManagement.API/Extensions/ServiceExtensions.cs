@@ -59,6 +59,6 @@ namespace WorkplaceManagement.Service.Extensions
 
         // Register DbContext
         public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => 
-                services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+                services.AddDbContext<RepositoryContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
     }
 }

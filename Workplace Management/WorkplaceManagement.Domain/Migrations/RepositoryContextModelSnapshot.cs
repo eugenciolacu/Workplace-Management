@@ -8,8 +8,8 @@ using WorkplaceManagement.Domain.Context;
 
 namespace WorkplaceManagement.Domain.Migrations
 {
-    [DbContext(typeof(ApplicationContext))]
-    partial class ApplicationContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(RepositoryContext))]
+    partial class RepositoryContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

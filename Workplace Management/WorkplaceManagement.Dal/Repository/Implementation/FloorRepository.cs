@@ -4,9 +4,9 @@ using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Dal.Repository.Implementation
 {
-    public class FloorRepository : GenericRepository<Floor>, IFloorRepository
+    public class FloorRepository : RepositoryBase<Floor>, IFloorRepository // GenericRepository<Floor>, IFloorRepository
     {
-        public FloorRepository(ApplicationContext context) : base(context)
+        public FloorRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
 
         }

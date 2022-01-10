@@ -9,7 +9,7 @@ namespace WorkplaceManagement.API
 {
     public static class Seed
     {
-        public static async Task SeedTestData(ApplicationContext context)
+        public static async Task SeedTestData(RepositoryContext context)
         {
             try
             {

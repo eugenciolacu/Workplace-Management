@@ -2,7 +2,7 @@
 
 namespace WorkplaceManagement.Dal.Repository.Interface
 {
-    public interface ISiteRepository : IGenericRepository<Site>
+    public interface ISiteRepository // : IGenericRepository<Site>
     {
 
     }

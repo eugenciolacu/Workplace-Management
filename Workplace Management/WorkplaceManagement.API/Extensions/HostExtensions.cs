@@ -18,9 +18,9 @@ namespace WorkplaceManagement.API.Extensions
 
                 try
                 {
-                    ApplicationContext applicationContext = services.GetRequiredService<ApplicationContext>();
+                    RepositoryContext repositoryContext = services.GetRequiredService<RepositoryContext>();
 
-                    await Seed.SeedTestData(applicationContext);
+                    await Seed.SeedTestData(repositoryContext);
                 }
                 catch (Exception ex)
                 {

@@ -4,9 +4,9 @@ using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Dal.Repository.Implementation
 {
-    public class WorkplaceRepository : GenericRepository<Workplace>, IWorkplaceRepository
+    public class WorkplaceRepository : RepositoryBase<Workplace>, IWorkplaceRepository //GenericRepository<Workplace>, IWorkplaceRepository
     {
-        public WorkplaceRepository(ApplicationContext context) : base(context)
+        public WorkplaceRepository(RepositoryContext repositoryContext) : base(repositoryContext)
         {
 
         }
