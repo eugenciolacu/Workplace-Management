@@ -27,48 +27,27 @@ namespace WorkplaceManagement.Service.Service.Implementation
 
         public async Task<SiteDto> DeleteSite(long id)
         {
-            Site toDelete = await _siteRepository.GetAsync(id);
-            await _siteRepository.DeleteAsync(toDelete);
-
-            return _mapper.Map<SiteDto>(toDelete);
+            return null;
         }
 
         public async Task<SiteDto> GetSite(long id)
         {
-            Site result = await _siteRepository.GetAsync(id);
-
-            if (result == null)
-            {
-                throw new Exception("Site not found, implement separate exception later");
-            }
-
-            return _mapper.Map<SiteDto>(result);
+            return null;
         }
 
         public async Task<IEnumerable<SiteDto>> GetSites()
         {
-            ICollection<Site> result = await _siteRepository.GetAllAsync();
-
-            return _mapper.Map<List<SiteDto>>(result);
+            return null;
         }
 
         public async Task<SiteDto> PostSite(SiteDto siteDto)
         {
-            Site site = _mapper.Map<Site>(siteDto);
-
-            Site result = await _siteRepository.AddAsync(site);
-
-            return _mapper.Map<SiteDto>(result);
+            return null;
         }
 
         public async Task<SiteDto> PutSite(long id, SiteDto siteDto)
         {
-            Site toUpdate = await _siteRepository.GetAsync(id);
-            toUpdate.Name = siteDto.Name;
-
-            Site result = await _siteRepository.UpdateAsync(toUpdate, toUpdate.Id);
-
-            return _mapper.Map<SiteDto>(result);
+            return null;
         }
     }
 }

@@ -31,18 +31,57 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             }
         }
 
+        public IFloorRepository Floor
+        {
+            get
+            {
+                if (_floorRepository == null)
+                {
+                    _floorRepository = new FloorRepository(_repositoryContext);
+                }
 
+                return _floorRepository;
+            }
+        }
 
+        public IWorkplaceRepository Workplace
+        {
+            get
+            {
+                if(_workplaceRepository == null)
+                {
+                    _workplaceRepository = new WorkplaceRepository(_repositoryContext);
+                }
 
+                return _workplaceRepository;
+            }
+        }
 
+        public IEmployeeRepository Employee
+        {
+            get
+            {
+                if(_employeeRepository == null)
+                {
+                    _employeeRepository = new EmployeeRepository(_repositoryContext);
+                }
 
-        public IFloorRepository Floor => throw new System.NotImplementedException();
+                return _employeeRepository;
+            }
+        }
 
-        public IWorkplaceRepository Workplace => throw new System.NotImplementedException();
+        public IReservationRepository Reservation
+        {
+            get
+            {
+                if(_reservationRepository == null)
+                {
+                    _reservationRepository = new ReservationRepository(_repositoryContext);
+                }
 
-        public IEmployeeRepository Employee => throw new System.NotImplementedException();
-
-        public IReservationRepository Reservation => throw new System.NotImplementedException();
+                return _reservationRepository;
+            }
+        }
 
         public void Save() => _repositoryContext.SaveChanges();
     }

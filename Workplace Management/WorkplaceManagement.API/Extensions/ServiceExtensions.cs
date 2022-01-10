@@ -5,16 +5,17 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
+using WorkplaceManagement.Dal.Repository.Implementation;
+using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Context;
-using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
 
 namespace WorkplaceManagement.Service.Extensions
 {
     public static class ServiceExtensions
     {
-        // use this to configure Cross-Origin Resource Sharing (CORS)
-        public static void ConfigureCors(this IServiceCollection services) => 
+        // Use this to configure Cross-Origin Resource Sharing (CORS)
+        public static void ConfigureCors(this IServiceCollection services) =>
             services.AddCors(options =>
                 {
                     options.AddPolicy("CorsPolicy", builder =>
@@ -23,7 +24,7 @@ namespace WorkplaceManagement.Service.Extensions
                         .AllowAnyHeader());
                 });
 
-        // use this to configure swagger
+        // Use this to configure swagger
         public static void ConfigureSwagger(this IServiceCollection services)
         {
             var info = new OpenApiInfo()
@@ -44,7 +45,7 @@ namespace WorkplaceManagement.Service.Extensions
             });
         }
 
-        // use this to configure IIS
+        // Use this to configure IIS
         public static void ConfigureIISIntegration(this IServiceCollection services)
         {
             services.Configure<IISOptions>(options =>
@@ -58,7 +59,11 @@ namespace WorkplaceManagement.Service.Extensions
             services.AddScoped<ILoggerManager, LoggerManager>();
 
         // Register DbContext
-        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) => 
+        public static void ConfigureSqlContext(this IServiceCollection services, IConfiguration configuration) =>
                 services.AddDbContext<RepositoryContext>(opts => opts.UseSqlServer(configuration.GetConnectionString("DefaultConnection")));
+
+        // Register RepositoryManager 
+        public static void ConfigureRepositoryManager(this IServiceCollection services) =>
+            services.AddScoped<IRepositoryManager, RepositoryManager>();
     }
 }

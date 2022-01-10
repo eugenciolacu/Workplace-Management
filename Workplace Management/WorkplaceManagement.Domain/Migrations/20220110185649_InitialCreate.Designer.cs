@@ -10,7 +10,7 @@ using WorkplaceManagement.Domain.Context;
 namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20220110152111_InitialCreate")]
+    [Migration("20220110185649_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

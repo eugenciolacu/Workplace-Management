@@ -40,24 +40,21 @@ namespace WorkplaceManagement.API
 
             services.ConfigureSqlContext(Configuration);
 
+            services.ConfigureRepositoryManager();
+
             services.AddControllers();
 
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
             services.AddTransient<ISiteService, SiteService>();
-            services.AddTransient<ISiteRepository, SiteRepository>();
 
             services.AddTransient<IFloorService, FloorService>();
-            services.AddTransient<IFloorRepository, FloorRepository>();
 
             services.AddTransient<IWorkplaceService, WorkplaceService>();
-            services.AddTransient<IWorkplaceRepository, WorkplaceRepository>();
 
             services.AddTransient<IEmployeeService, EmployeeService>();
-            services.AddTransient<IEmployeeRepository, EmployeeRepository>();
 
             services.AddTransient<IReservationService, ReservationService>();
-            services.AddTransient<IReservationRepository, ReservationRepository>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

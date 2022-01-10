@@ -27,48 +27,27 @@ namespace WorkplaceManagement.Service.Service.Implementation
 
         public async Task<FloorDto> DeleteFloor(long id)
         {
-            Floor toDelete = await _floorRepository.GetAsync(id);
-            await _floorRepository.DeleteAsync(toDelete);
-
-            return _mapper.Map<FloorDto>(toDelete);
+            return null;
         }
 
         public async Task<FloorDto> GetFloor(long id)
         {
-            Floor result = await _floorRepository.GetAsync(id);
-
-            if (result == null)
-            {
-                throw new Exception("Floor not found, implement separate exception later");
-            }
-
-            return _mapper.Map<FloorDto>(result);
+            return null;
         }
 
         public async Task<IEnumerable<FloorDto>> GetFloors()
         {
-            ICollection<Floor> result = await _floorRepository.GetAllAsync();
-
-            return _mapper.Map<List<FloorDto>>(result);
+            return null;
         }
 
         public async Task<FloorDto> PostFloor(FloorDto floorDto)
         {
-            Floor floor = _mapper.Map<Floor>(floorDto);
-
-            Floor result = await _floorRepository.AddAsync(floor);
-
-            return _mapper.Map<FloorDto>(result);
+            return null;
         }
 
         public async Task<FloorDto> PutFloor(long id, FloorDto floorDto)
         {
-            Floor toUpdate = await _floorRepository.GetAsync(id);
-            toUpdate.Name = floorDto.Name;
-
-            Floor result = await _floorRepository.UpdateAsync(toUpdate, toUpdate.Id);
-
-            return _mapper.Map<FloorDto>(result);
+            return null;
         }
     }
 }
