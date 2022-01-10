@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.IO;
 using System.Reflection;
 using WorkplaceManagement.Domain.Context;
+using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
 
 namespace WorkplaceManagement.Service.Extensions

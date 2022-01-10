@@ -64,7 +64,7 @@ namespace WorkplaceManagement.Service.Service.Implementation
         public async Task<ReservationDto> PutReservation(long id, ReservationDto reservationDto)
         {
             Reservation toUpdate = await _reservationRepository.GetAsync(id);
-            toUpdate.StratTimestamp = reservationDto.StratTimestamp;
+            toUpdate.StartTimestamp = reservationDto.StratTimestamp;
             toUpdate.EndTimestamp = reservationDto.EndTimestamp;
 
             Reservation result = await _reservationRepository.UpdateAsync(toUpdate, toUpdate.Id);

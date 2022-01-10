@@ -22,6 +22,12 @@ namespace WorkplaceManagement.LoggerService
             logger.Error(message);
         }
 
+        public void LogError(Exception ex, string message)
+        {
+            string msg = message + "\n" + ex.InnerException;
+            logger.Error(ex, msg);
+        }
+
         public void LogInfo(string message)
         {
             logger.Info(message);

@@ -87,7 +87,7 @@ namespace WorkplaceManagement.Domain.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StratTimestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    StartTimestamp = table.Column<DateTime>(type: "datetime2", nullable: false),
                     EndTimestamp = table.Column<DateTime>(type: "datetime2", nullable: true),
                     WorkplaceId = table.Column<long>(type: "bigint", nullable: false),
                     EmployeeId = table.Column<long>(type: "bigint", nullable: false)
@@ -95,7 +95,8 @@ namespace WorkplaceManagement.Domain.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Reservation", x => x.Id);
-                    table.CheckConstraint("CK_Reservation_StratTimestamp", "StratTimestamp >= GETDATE()");
+                    table.CheckConstraint("CK_Reservation_StartTimestamp", "StartTimestamp >= SYSDATETIME()");
+                    table.CheckConstraint("CK_Reservation_EndTimestamp", "StartTimestamp < EndTimestamp");
                     table.ForeignKey(
                         name: "FK_Reservation_Employee_EmployeeId",
                         column: x => x.EmployeeId,

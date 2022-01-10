@@ -10,9 +10,10 @@ namespace WorkplaceManagement.Domain.Mapping
         {
             builder.ToTable("Reservation");
 
-            builder.Property(r => r.StratTimestamp)
+            builder.Property(r => r.StartTimestamp)
                 .IsRequired();
-            builder.HasCheckConstraint("CK_Reservation_StratTimestamp", "StratTimestamp >= GETDATE()");
+            builder.HasCheckConstraint("CK_Reservation_StartTimestamp", "StartTimestamp >= SYSDATETIME()");
+            builder.HasCheckConstraint("CK_Reservation_EndTimestamp", "StartTimestamp < EndTimestamp");
         }
     }
 }

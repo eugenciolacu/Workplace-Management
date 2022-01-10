@@ -1,13 +1,17 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
+using System.Threading.Tasks;
+using WorkplaceManagement.API.Extensions;
 
 namespace WorkplaceManagement.API
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
-            CreateHostBuilder(args).Build().Run();
+            IHost host = CreateHostBuilder(args).Build();
+            await host.SeedDataAsync();
+            await host.RunAsync();
         }
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>

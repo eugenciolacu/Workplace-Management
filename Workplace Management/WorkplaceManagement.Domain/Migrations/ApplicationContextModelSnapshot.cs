@@ -91,7 +91,7 @@ namespace WorkplaceManagement.Domain.Migrations
                     b.Property<DateTime?>("EndTimestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StratTimestamp")
+                    b.Property<DateTime>("StartTimestamp")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("WorkplaceId")
@@ -105,7 +105,9 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.ToTable("Reservation");
 
-                    b.HasCheckConstraint("CK_Reservation_StratTimestamp", "StratTimestamp >= GETDATE()");
+                    b.HasCheckConstraint("CK_Reservation_StartTimestamp", "StartTimestamp >= SYSDATETIME()");
+
+                    b.HasCheckConstraint("CK_Reservation_EndTimestamp", "StartTimestamp < EndTimestamp");
                 });
 
             modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>

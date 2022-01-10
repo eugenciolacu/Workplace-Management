@@ -10,7 +10,7 @@ using WorkplaceManagement.Domain.Context;
 namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20220103153839_InitialCreate")]
+    [Migration("20220110135507_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -93,7 +93,7 @@ namespace WorkplaceManagement.Domain.Migrations
                     b.Property<DateTime?>("EndTimestamp")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("StratTimestamp")
+                    b.Property<DateTime>("StartTimestamp")
                         .HasColumnType("datetime2");
 
                     b.Property<long>("WorkplaceId")
@@ -107,7 +107,9 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.ToTable("Reservation");
 
-                    b.HasCheckConstraint("CK_Reservation_StratTimestamp", "StratTimestamp >= GETDATE()");
+                    b.HasCheckConstraint("CK_Reservation_StartTimestamp", "StartTimestamp >= SYSDATETIME()");
+
+                    b.HasCheckConstraint("CK_Reservation_EndTimestamp", "StartTimestamp < EndTimestamp");
                 });
 
             modelBuilder.Entity("WorkplaceManagement.Domain.Model.Site", b =>

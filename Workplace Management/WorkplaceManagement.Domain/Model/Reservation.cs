@@ -4,7 +4,7 @@ namespace WorkplaceManagement.Domain.Model
 {
     public class Reservation : EntityBase
     {
-        public DateTime StratTimestamp { get; set; }
+        public DateTime StartTimestamp { get; set; }
         public Nullable<DateTime> EndTimestamp { get; set; }
 
         public long WorkplaceId { get; set; }

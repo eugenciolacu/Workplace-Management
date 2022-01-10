@@ -1,4 +1,6 @@
-﻿namespace WorkplaceManagement.LoggerService
+﻿using System;
+
+namespace WorkplaceManagement.LoggerService
 {
     public interface ILoggerManager
     {
@@ -9,5 +11,6 @@
         void LogDebug(string message);
 
         void LogError(string message);
+        void LogError(Exception ex, string message);
     }
 }
