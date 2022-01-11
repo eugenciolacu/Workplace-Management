@@ -30,9 +30,19 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> Get(int id)
+        public IActionResult GetSite(long id)
         {
-            return Ok(await _siteService.GetSite(id));
+            SiteDto site = _siteService.GetSite(id, trackChanges: false);
+            if (site == null)
+            {
+                _logger.LogInfo($"Site with id: {id} doesn't exist in the database");
+                return NotFound();
+            }
+            else
+            {
+                return Ok(site);
+            }
+
         }
 
         [HttpPost]
@@ -40,7 +50,7 @@ namespace WorkplaceManagement.API.Controllers
         {
             Task<SiteDto> result = Task.Run(async () => await _siteService.PostSite(site));
 
-            return CreatedAtAction(nameof(Get), new { id = result.Id }, await result);
+            return null;
         }
 
         [HttpPut("{id}")]
@@ -48,7 +58,7 @@ namespace WorkplaceManagement.API.Controllers
         {
             Task<SiteDto> result = _siteService.PutSite(id, site);
 
-            return CreatedAtAction(nameof(Get), new { id = id }, await result);
+            return null;
         }
 
         [HttpDelete("{id}")]

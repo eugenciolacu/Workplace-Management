@@ -9,7 +9,7 @@ namespace WorkplaceManagement.Service.Service.Interface
     {
         Task<SiteDto> DeleteSite(long id);
 
-        Task<SiteDto> GetSite(long id);
+        SiteDto GetSite(long id, bool trackChanges);
 
         IEnumerable<SiteDto> GetAllSites(bool trackChanges);
 

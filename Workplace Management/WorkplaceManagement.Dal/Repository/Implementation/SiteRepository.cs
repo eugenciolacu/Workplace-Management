@@ -19,5 +19,11 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
                 .OrderBy(s => s.Name)
                 .ToList();
         }
+
+        public Site GetSite(long id, bool trackChanges)
+        {
+            return FindByCondition(s => s.Id.Equals(id), trackChanges)
+                .SingleOrDefault();
+        }
     }
 }
