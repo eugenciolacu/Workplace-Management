@@ -6,8 +6,7 @@ using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/sites/{siteId}/floors")]
     [ApiController]
     public class FloorController : ControllerBase
     {

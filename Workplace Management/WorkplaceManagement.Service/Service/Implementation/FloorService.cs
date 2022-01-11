@@ -12,16 +12,14 @@ namespace WorkplaceManagement.Service.Service.Implementation
 {
     public class FloorService : IFloorService
     {
+        private readonly IRepositoryManager _repository;
         private ILoggerManager _logger;
-
-        private IFloorRepository _floorRepository;
-
         private IMapper _mapper;
 
-        public FloorService(ILoggerManager logger, IFloorRepository floorRepository, IMapper mapper)
+        public FloorService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
+            _repository = repository;
             _logger = logger;
-            _floorRepository = floorRepository;
             _mapper = mapper;
         }
 
