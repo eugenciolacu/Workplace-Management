@@ -25,27 +25,27 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _mapper = mapper;
         }
 
-        public async Task<WorkplaceDto> DeleteWorkplace(long id)
+        public Task<WorkplaceDto> DeleteWorkplace(long id)
         {
             return null;
         }
 
-        public async Task<WorkplaceDto> GetWorkplace(long id)
+        public Task<WorkplaceDto> GetWorkplace(long id)
         {
             return null;
         }
 
-        public async Task<IEnumerable<WorkplaceDto>> GetWorkplaces()
+        public Task<IEnumerable<WorkplaceDto>> GetWorkplaces()
         {
             return null;
         }
 
-        public async Task<WorkplaceDto> PostWorkplace(WorkplaceDto workplaceDto)
+        public Task<WorkplaceDto> PostWorkplace(WorkplaceDto workplaceDto)
         {
             return null;
         }
 
-        public async Task<WorkplaceDto> PutWorkplace(long id, WorkplaceDto workplaceDto)
+        public Task<WorkplaceDto> PutWorkplace(long id, WorkplaceDto workplaceDto)
         {
             return null;
         }

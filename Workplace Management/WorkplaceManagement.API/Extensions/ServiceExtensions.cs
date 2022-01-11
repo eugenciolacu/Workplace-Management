@@ -9,6 +9,8 @@ using WorkplaceManagement.Dal.Repository.Implementation;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Context;
 using WorkplaceManagement.LoggerService;
+using WorkplaceManagement.Service.Service.Implementation;
+using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.Service.Extensions
 {
@@ -65,5 +67,11 @@ namespace WorkplaceManagement.Service.Extensions
         // Register RepositoryManager 
         public static void ConfigureRepositoryManager(this IServiceCollection services) =>
             services.AddScoped<IRepositoryManager, RepositoryManager>();
+
+        // Register services
+        public static void ConfigureServices(this IServiceCollection services)
+        {
+            services.AddScoped<ISiteService, SiteService>();
+        }
     }
 }

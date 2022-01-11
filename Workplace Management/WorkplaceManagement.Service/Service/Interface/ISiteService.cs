@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
+using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.Service.Dto;
 
 namespace WorkplaceManagement.Service.Service.Interface
@@ -10,7 +11,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 
         Task<SiteDto> GetSite(long id);
 
-        Task<IEnumerable<SiteDto>> GetSites();
+        IEnumerable<SiteDto> GetAllSites(bool trackChanges);
 
         Task<SiteDto> PostSite(SiteDto site);
 

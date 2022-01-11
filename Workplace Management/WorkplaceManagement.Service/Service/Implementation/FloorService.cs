@@ -25,27 +25,27 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _mapper = mapper;
         }
 
-        public async Task<FloorDto> DeleteFloor(long id)
+        public Task<FloorDto> DeleteFloor(long id)
         {
             return null;
         }
 
-        public async Task<FloorDto> GetFloor(long id)
+        public Task<FloorDto> GetFloor(long id)
         {
             return null;
         }
 
-        public async Task<IEnumerable<FloorDto>> GetFloors()
+        public Task<IEnumerable<FloorDto>> GetFloors()
         {
             return null;
         }
 
-        public async Task<FloorDto> PostFloor(FloorDto floorDto)
+        public Task<FloorDto> PostFloor(FloorDto floorDto)
         {
             return null;
         }
 
-        public async Task<FloorDto> PutFloor(long id, FloorDto floorDto)
+        public Task<FloorDto> PutFloor(long id, FloorDto floorDto)
         {
             return null;
         }

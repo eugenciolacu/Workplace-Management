@@ -12,40 +12,42 @@ namespace WorkplaceManagement.Service.Service.Implementation
 {
     public class SiteService : ISiteService
     {
+        private readonly IRepositoryManager _repository;
         private ILoggerManager _logger;
-
-        private ISiteRepository _siteRepository;
-
         private IMapper _mapper;
 
-        public SiteService(ILoggerManager logger, ISiteRepository siteRepository, IMapper mapper)
+        public SiteService(IRepositoryManager repository, ILoggerManager logger, IMapper mapper)
         {
+            _repository = repository;
             _logger = logger;
-            _siteRepository = siteRepository;
             _mapper = mapper;
         }
 
-        public async Task<SiteDto> DeleteSite(long id)
+        public Task<SiteDto> DeleteSite(long id)
         {
             return null;
         }
 
-        public async Task<SiteDto> GetSite(long id)
+        public Task<SiteDto> GetSite(long id)
         {
             return null;
         }
 
-        public async Task<IEnumerable<SiteDto>> GetSites()
+        public IEnumerable<SiteDto> GetAllSites(bool trackChanges)
+        {
+            IEnumerable<Site> sites = _repository.Site.GetAllSites(trackChanges: false);
+
+            IEnumerable<SiteDto> sitesDto = _mapper.Map<IEnumerable<SiteDto>>(sites);
+
+            return sitesDto;
+        }
+
+        public Task<SiteDto> PostSite(SiteDto siteDto)
         {
             return null;
         }
 
-        public async Task<SiteDto> PostSite(SiteDto siteDto)
-        {
-            return null;
-        }
-
-        public async Task<SiteDto> PutSite(long id, SiteDto siteDto)
+        public Task<SiteDto> PutSite(long id, SiteDto siteDto)
         {
             return null;
         }

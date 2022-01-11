@@ -2,7 +2,7 @@
 
 namespace WorkplaceManagement.Dal.Repository.Interface
 {
-    public interface IReservationRepository // : IGenericRepository<Reservation>
+    public interface IReservationRepository
     {
 
     }

@@ -25,27 +25,27 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _mapper = mapper;
         }
 
-        public async Task<ReservationDto> DeleteReservation(long id)
+        public Task<ReservationDto> DeleteReservation(long id)
         {
             return null;
         }
 
-        public async Task<ReservationDto> GetReservation(long id)
+        public Task<ReservationDto> GetReservation(long id)
         {
             return null;
         }
 
-        public async Task<IEnumerable<ReservationDto>> GetReservations()
+        public Task<IEnumerable<ReservationDto>> GetReservations()
         {
             return null;
         }
 
-        public async Task<ReservationDto> PostReservation(ReservationDto reservationDto)
+        public Task<ReservationDto> PostReservation(ReservationDto reservationDto)
         {
             return null;
         }
 
-        public async Task<ReservationDto> PutReservation(long id, ReservationDto reservationDto)
+        public Task<ReservationDto> PutReservation(long id, ReservationDto reservationDto)
         {
             return null;
         }

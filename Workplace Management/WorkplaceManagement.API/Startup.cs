@@ -1,18 +1,15 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpOverrides;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NLog;
 using System.IO;
-using WorkplaceManagement.Dal.Repository.Implementation;
-using WorkplaceManagement.Dal.Repository.Interface;
-using WorkplaceManagement.Domain.Context;
+using WorkplaceManagement.API.Extensions;
+using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Extensions;
 using WorkplaceManagement.Service.Service.Implementation;
-using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API
 {
@@ -46,19 +43,11 @@ namespace WorkplaceManagement.API
 
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
-            services.AddTransient<ISiteService, SiteService>();
-
-            services.AddTransient<IFloorService, FloorService>();
-
-            services.AddTransient<IWorkplaceService, WorkplaceService>();
-
-            services.AddTransient<IEmployeeService, EmployeeService>();
-
-            services.AddTransient<IReservationService, ReservationService>();
+            services.ConfigureServices();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ILoggerManager logger)
         {
             if (env.IsDevelopment())
             {
@@ -70,6 +59,8 @@ namespace WorkplaceManagement.API
             {
                 app.UseHsts();
             }
+
+            app.ConfigureExceptionHandler(logger);
 
             app.UseHttpsRedirection();
 

@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Dto;
@@ -6,8 +8,7 @@ using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
 {
-    [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("api/sites")]
     [ApiController]
     public class SiteController : ControllerBase
     {
@@ -21,9 +22,11 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public IActionResult GetSites()
         {
-            return Ok(await _siteService.GetSites());
+            IEnumerable<SiteDto> sites = _siteService.GetAllSites(trackChanges: false);
+
+            return Ok(sites);
         }
 
         [HttpGet("{id}")]
