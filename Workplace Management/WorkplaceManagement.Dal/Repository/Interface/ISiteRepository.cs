@@ -7,5 +7,6 @@ namespace WorkplaceManagement.Dal.Repository.Interface
     {
         IEnumerable<Site> GetSites(bool trackChanges);
         Site GetSite(long id, bool trackChanges);
+        void CreateSite(Site site);
     }
 }

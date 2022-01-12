@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoOutput;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers

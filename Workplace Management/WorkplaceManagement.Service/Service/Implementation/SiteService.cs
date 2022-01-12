@@ -1,11 +1,11 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.Service.Service.Implementation
@@ -46,9 +46,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return sitesDtos;
         }
 
-        public Task<SiteDto> PostSite(SiteDto siteDto)
+        public SiteDto CreateSite(SiteForCreationDto site)
         {
-            return null;
+            Site siteEntity = _mapper.Map<Site>(site);
+
+            _repository.Site.CreateSite(siteEntity);
+
+            _repository.Save();
+
+            return _mapper.Map<SiteDto>(siteEntity);
         }
 
         public Task<SiteDto> PutSite(long id, SiteDto siteDto)

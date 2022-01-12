@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoOutput;
 
 namespace WorkplaceManagement.Service.Service.Interface
 {

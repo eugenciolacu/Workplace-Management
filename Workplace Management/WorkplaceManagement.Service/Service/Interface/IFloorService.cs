@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 
 namespace WorkplaceManagement.Service.Service.Interface
 {
@@ -12,7 +13,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 
         IEnumerable<FloorDto> GetFloors(long siteId, bool trackChanges);
 
-        Task<FloorDto> PostFloor(FloorDto floor);
+        FloorDto CreateFloor(long siteId, FloorForCreationDto floor);
 
         Task<FloorDto> PutFloor(long id, FloorDto floor);
     }

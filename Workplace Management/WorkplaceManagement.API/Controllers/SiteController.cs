@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
@@ -29,7 +29,7 @@ namespace WorkplaceManagement.API.Controllers
             return Ok(sites);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "SiteById")]
         public IActionResult GetSite(long id)
         {
             SiteDto site = _siteService.GetSite(id, trackChanges: false);
@@ -45,11 +45,17 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] SiteDto site)
+        public IActionResult CreateSite([FromBody] SiteForCreationDto site)
         {
-            Task<SiteDto> result = Task.Run(async () => await _siteService.PostSite(site));
+            if(site == null)
+            {
+                _logger.LogError("SiteForCreationDto object sent from client is null");
+                return BadRequest("SiteForCreationDto object is null");
+            }
 
-            return null;
+            SiteDto siteToReturn = _siteService.CreateSite(site);
+
+            return CreatedAtRoute("SiteById", new { id = siteToReturn.Id }, siteToReturn);
         }
 
         [HttpPut("{id}")]

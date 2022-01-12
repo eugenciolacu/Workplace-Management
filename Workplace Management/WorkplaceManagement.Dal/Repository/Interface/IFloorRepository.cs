@@ -8,5 +8,7 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         IEnumerable<Floor> GetFloors(long siteId, bool trackChanges);
 
         Floor GetFloor(long siteId, long id, bool trackChanges);
+
+        void CreateFloor(long siteId, Floor floor);
     }
 }

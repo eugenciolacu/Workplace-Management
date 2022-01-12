@@ -1,4 +1,4 @@
-﻿namespace WorkplaceManagement.Service.Dto
+﻿namespace WorkplaceManagement.Service.DtoOutput
 {
     public class FloorDto
     {

@@ -1,5 +1,5 @@
 ﻿using WorkplaceManagement.Domain.Model;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoOutput;
 
 namespace WorkplaceManagement.Service.Mapping
 {

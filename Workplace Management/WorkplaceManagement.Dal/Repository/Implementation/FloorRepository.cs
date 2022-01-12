@@ -24,5 +24,11 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return FindByCondition(f => f.SiteId.Equals(siteId) && f.Id.Equals(id), trackChanges)
                 .SingleOrDefault();
         }
+
+        public void CreateFloor(long siteId, Floor floor)
+        {
+            floor.SiteId = siteId;
+            Create(floor);
+        }
     }
 }

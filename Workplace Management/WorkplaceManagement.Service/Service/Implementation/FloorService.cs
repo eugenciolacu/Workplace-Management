@@ -5,7 +5,8 @@ using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.Service.Service.Implementation
@@ -46,9 +47,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return floorDtos;
         }
 
-        public Task<FloorDto> PostFloor(FloorDto floorDto)
+        public FloorDto CreateFloor(long siteId, FloorForCreationDto floor)
         {
-            return null;
+            var floorEntity = _mapper.Map<Floor>(floor);
+
+            _repository.Floor.CreateFloor(siteId, floorEntity);
+
+            _repository.Save();
+
+            return _mapper.Map<FloorDto>(floorEntity);
         }
 
         public Task<FloorDto> PutFloor(long id, FloorDto floorDto)

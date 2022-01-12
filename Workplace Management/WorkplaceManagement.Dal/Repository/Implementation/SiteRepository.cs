@@ -25,5 +25,10 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return FindByCondition(s => s.Id.Equals(id), trackChanges)
                 .SingleOrDefault();
         }
+
+        public void CreateSite(Site site)
+        {
+            Create(site);
+        }
     }
 }

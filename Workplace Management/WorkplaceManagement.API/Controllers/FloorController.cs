@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
@@ -37,7 +38,7 @@ namespace WorkplaceManagement.API.Controllers
             return Ok(floors);
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("{id}", Name = "GetFloorForSite")]
         public IActionResult GetFloorForSite(long siteId, long id)
         {
             SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
@@ -58,9 +59,24 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Post([FromBody] FloorDto floor)
+        public IActionResult CreateFloorForSite(long siteId, [FromBody] FloorForCreationDto floor)
         {
-            return null;
+            if (floor == null)
+            {
+                _logger.LogError("FloorForCreationDto object sent from client is null.");
+                return BadRequest("FloorForCreationDto object is null");
+            }
+
+            SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
+            if (site == null)
+            {
+                _logger.LogInfo($"Site with id: {siteId} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            FloorDto floorToReturn = _floorService.CreateFloor(siteId, floor);
+
+            return CreatedAtRoute("GetFloorForSite", new { siteId, id = floorToReturn.Id }, floorToReturn);
         }
 
         [HttpPut("{id}")]

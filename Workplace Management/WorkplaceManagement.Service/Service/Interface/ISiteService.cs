@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
-using WorkplaceManagement.Domain.Model;
-using WorkplaceManagement.Service.Dto;
+using WorkplaceManagement.Service.DtoInput;
+using WorkplaceManagement.Service.DtoOutput;
 
 namespace WorkplaceManagement.Service.Service.Interface
 {
@@ -13,7 +13,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 
         IEnumerable<SiteDto> GetSites(bool trackChanges);
 
-        Task<SiteDto> PostSite(SiteDto site);
+        SiteDto CreateSite(SiteForCreationDto site);
 
         Task<SiteDto> PutSite(long id, SiteDto site);
     }
