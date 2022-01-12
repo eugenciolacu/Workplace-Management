@@ -37,13 +37,13 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return siteDto;
         }
 
-        public IEnumerable<SiteDto> GetAllSites(bool trackChanges)
+        public IEnumerable<SiteDto> GetSites(bool trackChanges)
         {
-            IEnumerable<Site> sites = _repository.Site.GetAllSites(trackChanges);
+            IEnumerable<Site> sites = _repository.Site.GetSites(trackChanges);
 
-            IEnumerable<SiteDto> sitesDto = _mapper.Map<IEnumerable<SiteDto>>(sites);
+            IEnumerable<SiteDto> sitesDtos = _mapper.Map<IEnumerable<SiteDto>>(sites);
 
-            return sitesDto;
+            return sitesDtos;
         }
 
         public Task<SiteDto> PostSite(SiteDto siteDto)

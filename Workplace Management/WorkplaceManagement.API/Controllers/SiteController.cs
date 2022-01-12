@@ -24,7 +24,7 @@ namespace WorkplaceManagement.API.Controllers
         [HttpGet]
         public IActionResult GetSites()
         {
-            IEnumerable<SiteDto> sites = _siteService.GetAllSites(trackChanges: false);
+            IEnumerable<SiteDto> sites = _siteService.GetSites(trackChanges: false);
 
             return Ok(sites);
         }
@@ -35,14 +35,13 @@ namespace WorkplaceManagement.API.Controllers
             SiteDto site = _siteService.GetSite(id, trackChanges: false);
             if (site == null)
             {
-                _logger.LogInfo($"Site with id: {id} doesn't exist in the database");
+                _logger.LogInfo($"Site with id: {id} doesn't exist in the database.");
                 return NotFound();
             }
             else
             {
                 return Ok(site);
             }
-
         }
 
         [HttpPost]

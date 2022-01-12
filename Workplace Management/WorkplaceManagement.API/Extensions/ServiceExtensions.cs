@@ -72,6 +72,7 @@ namespace WorkplaceManagement.Service.Extensions
         public static void ConfigureServices(this IServiceCollection services)
         {
             services.AddScoped<ISiteService, SiteService>();
+            services.AddScoped<IFloorService, FloorService>();
         }
     }
 }

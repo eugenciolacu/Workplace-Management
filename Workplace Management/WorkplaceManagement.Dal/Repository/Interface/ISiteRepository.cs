@@ -5,7 +5,7 @@ namespace WorkplaceManagement.Dal.Repository.Interface
 {
     public interface ISiteRepository
     {
-        IEnumerable<Site> GetAllSites(bool trackChanges);
+        IEnumerable<Site> GetSites(bool trackChanges);
         Site GetSite(long id, bool trackChanges);
     }
 }

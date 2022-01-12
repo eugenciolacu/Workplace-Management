@@ -8,9 +8,9 @@ namespace WorkplaceManagement.Service.Service.Interface
     {
         Task<FloorDto> DeleteFloor(long id);
 
-        Task<FloorDto> GetFloor(long id);
+        public FloorDto GetFloor(long siteId, long id, bool trackChanges);
 
-        Task<IEnumerable<FloorDto>> GetFloors();
+        IEnumerable<FloorDto> GetFloors(long siteId, bool trackChanges);
 
         Task<FloorDto> PostFloor(FloorDto floor);
 

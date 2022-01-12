@@ -11,7 +11,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 
         SiteDto GetSite(long id, bool trackChanges);
 
-        IEnumerable<SiteDto> GetAllSites(bool trackChanges);
+        IEnumerable<SiteDto> GetSites(bool trackChanges);
 
         Task<SiteDto> PostSite(SiteDto site);
 

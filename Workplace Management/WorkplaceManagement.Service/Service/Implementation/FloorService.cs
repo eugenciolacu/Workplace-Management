@@ -28,14 +28,22 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return null;
         }
 
-        public Task<FloorDto> GetFloor(long id)
+        public FloorDto GetFloor(long siteId, long id, bool trackChanges)
         {
-            return null;
+            Floor floor = _repository.Floor.GetFloor(siteId, id, trackChanges);
+
+            FloorDto floorDto = _mapper.Map<FloorDto>(floor);
+
+            return floorDto;
         }
 
-        public Task<IEnumerable<FloorDto>> GetFloors()
+        public IEnumerable<FloorDto> GetFloors(long siteId, bool trackChanges)
         {
-            return null;
+            IEnumerable<Floor> floors = _repository.Floor.GetFloors(siteId, trackChanges);
+
+            IEnumerable<FloorDto> floorDtos = _mapper.Map<IEnumerable<FloorDto>>(floors);
+
+            return floorDtos;
         }
 
         public Task<FloorDto> PostFloor(FloorDto floorDto)

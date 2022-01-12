@@ -13,7 +13,7 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
 
         }
 
-        public IEnumerable<Site> GetAllSites(bool trackChanges)
+        public IEnumerable<Site> GetSites(bool trackChanges)
         {
             return FindAll(trackChanges)
                 .OrderBy(s => s.Name)
