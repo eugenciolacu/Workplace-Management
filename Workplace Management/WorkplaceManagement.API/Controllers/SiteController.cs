@@ -108,11 +108,19 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult DeleteSite(int id)
         {
-            Task<SiteDto> result = _siteService.DeleteSite(id);
+            var site = _siteService.GetSite(id, trackChanges: false);
 
-            return Ok(await result);
+            if(site == null)
+            {
+                _logger.LogInfo($"Site with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _siteService.DeleteSite(id, trackChanges: false);
+
+            return NoContent();
         }
     }
 }

@@ -24,9 +24,13 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _mapper = mapper;
         }
 
-        public Task<SiteDto> DeleteSite(long id)
+        public void DeleteSite(long id, bool trackChanges)
         {
-            return null;
+            Site site = _repository.Site.GetSite(id, trackChanges);
+
+            _repository.Site.DeleteSite(site);
+
+            _repository.Save();
         }
 
         public SiteDto GetSite(long id, bool trackChanges)

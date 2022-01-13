@@ -36,5 +36,10 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             return FindByCondition(x => ids.Contains(x.Id), trackChanges)
                 .ToList();
         }
+
+        public void DeleteSite(Site site)
+        {
+            Delete(site);
+        }
     }
 }

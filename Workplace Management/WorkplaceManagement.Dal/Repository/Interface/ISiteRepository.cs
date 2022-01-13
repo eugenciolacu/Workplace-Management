@@ -9,5 +9,6 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         IEnumerable<Site> GetByIds(IEnumerable<long> ids, bool trackChanges);
         Site GetSite(long id, bool trackChanges);
         void CreateSite(Site site);
+        void DeleteSite(Site site);
     }
 }

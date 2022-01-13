@@ -7,7 +7,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 {
     public interface ISiteService
     {
-        Task<SiteDto> DeleteSite(long id);
+        void DeleteSite(long id, bool trackChanges);
 
         SiteDto GetSite(long id, bool trackChanges);
 
