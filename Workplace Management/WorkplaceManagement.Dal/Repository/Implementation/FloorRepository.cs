@@ -30,5 +30,10 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
             floor.SiteId = siteId;
             Create(floor);
         }
+
+        public void DeleteFloor(Floor floor)
+        {
+            Delete(floor);
+        }
     }
 }

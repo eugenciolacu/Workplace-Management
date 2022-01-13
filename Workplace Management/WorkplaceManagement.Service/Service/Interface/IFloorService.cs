@@ -7,7 +7,7 @@ namespace WorkplaceManagement.Service.Service.Interface
 {
     public interface IFloorService
     {
-        Task<FloorDto> DeleteFloor(long id);
+        void DeleteFloor(long siteId, long id, bool trackChanges);
 
         public FloorDto GetFloor(long siteId, long id, bool trackChanges);
 

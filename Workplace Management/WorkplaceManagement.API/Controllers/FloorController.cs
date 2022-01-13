@@ -86,11 +86,27 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<IActionResult> Delete(int id)
+        public IActionResult DeleteFloorForSite(long siteId, long id)
         {
-            Task<FloorDto> result = _floorService.DeleteFloor(id);
+            SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
 
-            return Ok(await result);
+            if(site == null)
+            {
+                _logger.LogInfo($"Site with id: {siteId} doesn't exist in the database");
+                return NotFound();
+            }
+
+            FloorDto floorForSite = _floorService.GetFloor(siteId, id, trackChanges: false);
+
+            if(floorForSite == null)
+            {
+                _logger.LogInfo($"Site with id: {id} doesn't exist in the database");
+                return NotFound();
+            }
+
+            _floorService.DeleteFloor(siteId, id, trackChanges: false);
+
+            return NoContent();
         }
     }
 }

@@ -10,5 +10,7 @@ namespace WorkplaceManagement.Dal.Repository.Interface
         Floor GetFloor(long siteId, long id, bool trackChanges);
 
         void CreateFloor(long siteId, Floor floor);
+
+        void DeleteFloor(Floor floor);
     }
 }

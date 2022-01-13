@@ -24,9 +24,13 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _mapper = mapper;
         }
 
-        public Task<FloorDto> DeleteFloor(long id)
+        public void DeleteFloor(long siteId, long id, bool trackChanges)
         {
-            return null;
+            Floor floorForSite = _repository.Floor.GetFloor(siteId, id, trackChanges);
+
+            _repository.Floor.DeleteFloor(floorForSite);
+
+            _repository.Save();
         }
 
         public FloorDto GetFloor(long siteId, long id, bool trackChanges)
