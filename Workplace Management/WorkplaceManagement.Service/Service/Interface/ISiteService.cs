@@ -15,6 +15,10 @@ namespace WorkplaceManagement.Service.Service.Interface
 
         SiteDto CreateSite(SiteForCreationDto site);
 
+        IEnumerable<SiteDto> CreateSiteCollection(IEnumerable<SiteForCreationDto> siteCollection);
+
         Task<SiteDto> PutSite(long id, SiteDto site);
+
+        IEnumerable<SiteDto> GetSiteCollection(IEnumerable<long> ids, bool trackChanges);
     }
 }

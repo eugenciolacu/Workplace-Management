@@ -68,10 +68,10 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.HasIndex("SiteId");
+
+                    b.HasIndex("Name", "SiteId")
+                        .IsUnique();
 
                     b.ToTable("Floor");
 
@@ -151,7 +151,7 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.HasIndex("FloorId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "FloorId")
                         .IsUnique();
 
                     b.ToTable("Workplace");

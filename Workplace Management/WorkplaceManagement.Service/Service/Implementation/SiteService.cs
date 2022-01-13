@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
@@ -46,6 +47,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return sitesDtos;
         }
 
+        public IEnumerable<SiteDto> GetSiteCollection(IEnumerable<long> ids, bool trackChanges)
+        {
+            IEnumerable<Site> siteEntities = _repository.Site.GetByIds(ids, trackChanges);
+
+            IEnumerable<SiteDto> sitesDtos = _mapper.Map<IEnumerable<SiteDto>>(siteEntities);
+
+            return sitesDtos;
+        }
+
         public SiteDto CreateSite(SiteForCreationDto site)
         {
             Site siteEntity = _mapper.Map<Site>(site);
@@ -55,6 +65,20 @@ namespace WorkplaceManagement.Service.Service.Implementation
             _repository.Save();
 
             return _mapper.Map<SiteDto>(siteEntity);
+        }
+
+        public IEnumerable<SiteDto> CreateSiteCollection(IEnumerable<SiteForCreationDto> siteCollection)
+        {
+            IEnumerable<Site> siteEntities = _mapper.Map<IEnumerable<Site>>(siteCollection);
+
+            foreach (Site site in siteEntities)
+            {
+                _repository.Site.CreateSite(site);
+            }
+
+            _repository.Save();
+
+            return _mapper.Map<IEnumerable<SiteDto>>(siteEntities);
         }
 
         public Task<SiteDto> PutSite(long id, SiteDto siteDto)

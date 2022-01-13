@@ -10,7 +10,7 @@ using WorkplaceManagement.Domain.Context;
 namespace WorkplaceManagement.Domain.Migrations
 {
     [DbContext(typeof(RepositoryContext))]
-    [Migration("20220111083125_InitialCreate")]
+    [Migration("20220113121910_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,10 +70,10 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("Name")
-                        .IsUnique();
-
                     b.HasIndex("SiteId");
+
+                    b.HasIndex("Name", "SiteId")
+                        .IsUnique();
 
                     b.ToTable("Floor");
 
@@ -153,7 +153,7 @@ namespace WorkplaceManagement.Domain.Migrations
 
                     b.HasIndex("FloorId");
 
-                    b.HasIndex("Name")
+                    b.HasIndex("Name", "FloorId")
                         .IsUnique();
 
                     b.ToTable("Workplace");

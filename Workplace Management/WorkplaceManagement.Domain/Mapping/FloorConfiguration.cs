@@ -13,7 +13,7 @@ namespace WorkplaceManagement.Domain.Mapping
             builder.Property(f => f.Name)
                 .IsRequired()
                 .HasMaxLength(64);
-            builder.HasIndex(f => f.Name)
+            builder.HasIndex(f => new { f.Name, f.SiteId })
                 .IsUnique();
             builder.HasCheckConstraint("CK_Floor_Name", "Name != ''");
         }

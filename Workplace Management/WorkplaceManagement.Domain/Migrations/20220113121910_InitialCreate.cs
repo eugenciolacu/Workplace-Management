@@ -112,9 +112,9 @@ namespace WorkplaceManagement.Domain.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Floor_Name",
+                name: "IX_Floor_Name_SiteId",
                 table: "Floor",
-                column: "Name",
+                columns: new[] { "Name", "SiteId" },
                 unique: true);
 
             migrationBuilder.CreateIndex(
@@ -144,9 +144,9 @@ namespace WorkplaceManagement.Domain.Migrations
                 column: "FloorId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Workplace_Name",
+                name: "IX_Workplace_Name_FloorId",
                 table: "Workplace",
-                column: "Name",
+                columns: new[] { "Name", "FloorId" },
                 unique: true);
         }
 

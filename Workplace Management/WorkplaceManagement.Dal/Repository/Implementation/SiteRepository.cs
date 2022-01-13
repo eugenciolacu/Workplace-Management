@@ -30,5 +30,11 @@ namespace WorkplaceManagement.Dal.Repository.Implementation
         {
             Create(site);
         }
+
+        public IEnumerable<Site> GetByIds(IEnumerable<long> ids, bool trackChanges)
+        {
+            return FindByCondition(x => ids.Contains(x.Id), trackChanges)
+                .ToList();
+        }
     }
 }

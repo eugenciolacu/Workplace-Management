@@ -1,6 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using WorkplaceManagement.API.ModelBinders;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.DtoInput;
 using WorkplaceManagement.Service.DtoOutput;
@@ -44,6 +47,26 @@ namespace WorkplaceManagement.API.Controllers
             }
         }
 
+        [HttpGet("collection/({ids})", Name = "SiteCollection")]
+        public IActionResult GetSiteCollection([FromRoute] [ModelBinder(BinderType = typeof(ArrayModelBinder))] IEnumerable<long> ids) // without [FromRoute] do not work in swagger
+        {
+            if (ids == null)
+            {
+                _logger.LogError("Parameter ids is null");
+                return BadRequest("Parameter ids is null");
+            }
+
+            IEnumerable<SiteDto> sitesToReturn = _siteService.GetSiteCollection(ids, trackChanges: false);
+
+            if (ids.Count() != sitesToReturn.Count())
+            {
+                _logger.LogError("Some ids are not valid in a collection");
+                return NotFound();
+            }
+
+            return Ok(sitesToReturn);
+        }
+
         [HttpPost]
         public IActionResult CreateSite([FromBody] SiteForCreationDto site)
         {
@@ -56,6 +79,24 @@ namespace WorkplaceManagement.API.Controllers
             SiteDto siteToReturn = _siteService.CreateSite(site);
 
             return CreatedAtRoute("SiteById", new { id = siteToReturn.Id }, siteToReturn);
+        }
+
+
+
+        [HttpPost("collection")]
+        public IActionResult CreateSiteCollection([FromBody] IEnumerable<SiteForCreationDto> siteCollection)
+        {
+            if (siteCollection == null)
+            {
+                _logger.LogError("Site collection sent from client is null.");
+                return BadRequest("Site collection is null");
+            }
+
+            IEnumerable<SiteDto> siteCollectionToReturn = _siteService.CreateSiteCollection(siteCollection);
+
+            string ids = string.Join(",", siteCollectionToReturn.Select(s => s.Id));
+
+            return CreatedAtRoute("SiteCollection", new { ids }, siteCollectionToReturn);
         }
 
         [HttpPut("{id}")]
