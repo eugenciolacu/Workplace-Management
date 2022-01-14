@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using System.Collections.Generic;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
@@ -66,6 +67,19 @@ namespace WorkplaceManagement.Service.Service.Implementation
             Floor floorEntity = _repository.Floor.GetFloor(siteId, id, trackChanges);
 
             _mapper.Map(floor, floorEntity);
+
+            _repository.Save();
+
+            return _mapper.Map<FloorDto>(floorEntity);
+        }
+
+        public FloorDto PartiallyUpdateFloorForSite(long siteId, long id, JsonPatchDocument<FloorForUpdateDto> patchDoc, bool trackChanges)
+        {
+            Floor floorEntity = _repository.Floor.GetFloor(siteId, id, trackChanges);
+
+            FloorForUpdateDto floorToPatch = _mapper.Map<FloorForUpdateDto>(floorEntity);
+            patchDoc.ApplyTo(floorToPatch);
+            _mapper.Map(floorToPatch, floorEntity);
 
             _repository.Save();
 

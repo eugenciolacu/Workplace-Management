@@ -39,7 +39,8 @@ namespace WorkplaceManagement.API
 
             services.ConfigureRepositoryManager();
 
-            services.AddControllers();
+            services.AddControllers()
+                .AddNewtonsoftJson();
 
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 

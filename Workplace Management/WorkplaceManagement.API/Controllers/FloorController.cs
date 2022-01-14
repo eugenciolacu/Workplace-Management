@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.JsonPatch;
+using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
@@ -128,6 +129,35 @@ namespace WorkplaceManagement.API.Controllers
             }
 
             _floorService.DeleteFloor(siteId, id, trackChanges: false);
+
+            return NoContent();
+        }
+
+        [HttpPatch("{id}")]
+        public IActionResult PartiallyUpdateFloorForSite(long siteId, long id, [FromBody] JsonPatchDocument<FloorForUpdateDto> patchDoc)
+        {
+            if (patchDoc == null)
+            {
+                _logger.LogError("patchDoc object sent from client is null.");
+                return BadRequest("patchDoc object is null");
+            }
+
+            SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
+            if (site == null)
+            {
+                _logger.LogInfo($"Site with id: {siteId} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            FloorDto floorToBeUpdated = _floorService.GetFloor(siteId, id, trackChanges: false);
+
+            if (floorToBeUpdated == null)
+            {
+                _logger.LogInfo($"Floor with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _floorService.PartiallyUpdateFloorForSite(siteId, id, patchDoc, true);
 
             return NoContent();
         }
