@@ -1,12 +1,11 @@
 ﻿using AutoMapper;
-using System;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.DtoInput;
 using WorkplaceManagement.Service.DtoOutput;
+using WorkplaceManagement.Service.DtoUpdate;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.Service.Service.Implementation
@@ -62,9 +61,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return _mapper.Map<FloorDto>(floorEntity);
         }
 
-        public Task<FloorDto> PutFloor(long id, FloorDto floorDto)
+        public FloorDto UpdateFloorForSite(long siteId, long id, FloorForUpdateDto floor, bool trackChanges)
         {
-            return null;
+            Floor floorEntity = _repository.Floor.GetFloor(siteId, id, trackChanges);
+
+            _mapper.Map(floor, floorEntity);
+
+            _repository.Save();
+
+            return _mapper.Map<FloorDto>(floorEntity);
         }
     }
 }

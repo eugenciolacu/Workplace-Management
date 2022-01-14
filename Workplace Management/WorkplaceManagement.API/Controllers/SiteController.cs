@@ -7,6 +7,7 @@ using WorkplaceManagement.API.ModelBinders;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.DtoInput;
 using WorkplaceManagement.Service.DtoOutput;
+using WorkplaceManagement.Service.DtoUpdate;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
@@ -100,11 +101,24 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] SiteDto site)
+        public IActionResult UpdateSite(long id, [FromBody] SiteForUpdateDto site)
         {
-            Task<SiteDto> result = _siteService.PutSite(id, site);
+            if(site == null)
+            {
+                _logger.LogError("SiteForUpdateDto object sent from client is null.");
+                return BadRequest("SiteForUpdate object is null");
+            }
 
-            return null;
+            SiteDto siteToBeUpdated = _siteService.GetSite(id, false);
+            if(siteToBeUpdated == null)
+            {
+                _logger.LogInfo($"Site with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _siteService.UpdateSite(id, site, trackChanges: true);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]

@@ -7,6 +7,7 @@ using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.DtoInput;
 using WorkplaceManagement.Service.DtoOutput;
+using WorkplaceManagement.Service.DtoUpdate;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.Service.Service.Implementation
@@ -85,9 +86,15 @@ namespace WorkplaceManagement.Service.Service.Implementation
             return _mapper.Map<IEnumerable<SiteDto>>(siteEntities);
         }
 
-        public Task<SiteDto> PutSite(long id, SiteDto siteDto)
+        public SiteDto UpdateSite(long id, SiteForUpdateDto site, bool trackChanges)
         {
-            return null;
+            var siteEntity = _repository.Site.GetSite(id, trackChanges);
+
+            _mapper.Map(site, siteEntity);
+
+            _repository.Save();
+
+            return _mapper.Map<SiteDto>(siteEntity);
         }
     }
 }

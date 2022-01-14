@@ -4,6 +4,7 @@ using System.Threading.Tasks;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.DtoInput;
 using WorkplaceManagement.Service.DtoOutput;
+using WorkplaceManagement.Service.DtoUpdate;
 using WorkplaceManagement.Service.Service.Interface;
 
 namespace WorkplaceManagement.API.Controllers
@@ -80,9 +81,31 @@ namespace WorkplaceManagement.API.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put([FromRoute] int id, [FromBody] FloorDto floor)
+        public IActionResult UpdateFloorForSite(long siteId, long id, [FromBody] FloorForUpdateDto floor)
         {
-            return null;
+            if(floor == null)
+            {
+                _logger.LogError("FloorForUpdateDto object sent from client is null.");
+                return BadRequest("FloorForUpdateDto object is null");
+            }
+
+            SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
+            if(site == null)
+            {
+                _logger.LogInfo($"Site with id: {siteId} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            FloorDto floorToBeUpdated = _floorService.GetFloor(siteId, id, trackChanges: false);
+            if (floorToBeUpdated == null)
+            {
+                _logger.LogInfo($"Floor with id: {id} doesn't exist in the database.");
+                return NotFound();
+            }
+
+            _floorService.UpdateFloorForSite(siteId, id, floor, trackChanges: true);
+
+            return NoContent();
         }
 
         [HttpDelete("{id}")]
