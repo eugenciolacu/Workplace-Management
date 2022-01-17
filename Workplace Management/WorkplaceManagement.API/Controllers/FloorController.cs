@@ -69,6 +69,12 @@ namespace WorkplaceManagement.API.Controllers
                 return BadRequest("FloorForCreationDto object is null");
             }
 
+            if (!ModelState.IsValid)
+            {
+                _logger.LogError("Invalid model state for the FloorForCreationDto object");
+                return UnprocessableEntity(ModelState);
+            }
+
             SiteDto site = _siteService.GetSite(siteId, trackChanges: false);
             if (site == null)
             {
