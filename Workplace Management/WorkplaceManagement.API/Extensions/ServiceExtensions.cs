@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -8,6 +9,7 @@ using System.Reflection;
 using WorkplaceManagement.Dal.Repository.Implementation;
 using WorkplaceManagement.Dal.Repository.Interface;
 using WorkplaceManagement.Domain.Context;
+using WorkplaceManagement.Domain.Model;
 using WorkplaceManagement.LoggerService;
 using WorkplaceManagement.Service.Service.Implementation;
 using WorkplaceManagement.Service.Service.Interface;
@@ -73,6 +75,24 @@ namespace WorkplaceManagement.Service.Extensions
         {
             services.AddScoped<ISiteService, SiteService>();
             services.AddScoped<IFloorService, FloorService>();
+        }
+
+        // configure identity
+        public static void ConfigureIdentity(this IServiceCollection services)
+        {
+            var builder = services.AddIdentityCore<User>(o =>
+            {
+                o.Password.RequireDigit = true;
+                o.Password.RequireLowercase = false;
+                o.Password.RequireUppercase = false;
+                o.Password.RequireNonAlphanumeric = false;
+                o.Password.RequiredLength = 4;
+                o.User.RequireUniqueEmail = true;
+            });
+
+            builder = new IdentityBuilder(builder.UserType, typeof(IdentityRole), builder.Services);
+            builder.AddEntityFrameworkStores<RepositoryContext>()
+                .AddDefaultTokenProviders();
         }
     }
 }

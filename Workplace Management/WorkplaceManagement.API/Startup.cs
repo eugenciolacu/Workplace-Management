@@ -43,6 +43,10 @@ namespace WorkplaceManagement.API
             services.AddControllers()
                 .AddNewtonsoftJson();
 
+            services.AddAuthentication();
+
+            services.AddAuthorization();
+
             services.AddAutoMapper(typeof(SiteService)); // assembly where automaper is used
 
             services.ConfigureServices();
@@ -82,6 +86,8 @@ namespace WorkplaceManagement.API
             });
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

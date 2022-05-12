@@ -1,10 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using WorkplaceManagement.Domain.Mapping;
 using WorkplaceManagement.Domain.Model;
 
 namespace WorkplaceManagement.Domain.Context
 {
-    public class RepositoryContext : DbContext
+    public class RepositoryContext : IdentityDbContext<User>
     {
         public DbSet<Site> Sites { get; set; }
         public DbSet<Floor> Floors { get; set; }
@@ -19,11 +20,15 @@ namespace WorkplaceManagement.Domain.Context
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
+
             modelBuilder.ApplyConfiguration(new SiteConfiguration());
             modelBuilder.ApplyConfiguration(new FloorConfiguration());
             modelBuilder.ApplyConfiguration(new WorkplaceConfiguration());
             modelBuilder.ApplyConfiguration(new EmployeeConfiguration());
             modelBuilder.ApplyConfiguration(new ReservationConfiguration());
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
         }
     }
 }
